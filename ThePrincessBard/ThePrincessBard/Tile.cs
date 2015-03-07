@@ -35,6 +35,12 @@ namespace ThePrincessBard
         /// past it to the left and right, but can not fall down through the top of it.
         /// </summary>
         Platform = 2,
+
+        /// <summary>
+        /// A Climbable tile is one which behaves like a passable tile except when the
+        /// player is adjacent to the left or right and climbs up or down.
+        /// </summary>
+        Climbable = 3,
     }
 
     /// <summary>
@@ -47,6 +53,7 @@ namespace ThePrincessBard
 
         public const int Width = 40;
         public const int Height = 32;
+        public const int Center = Width / 2;
 
         public static readonly Vector2 Size = new Vector2(Width, Height);
 

@@ -91,6 +91,15 @@ namespace ThePrincessBard
         bool isOnGround;
 
         /// <summary>
+        /// Gets whether or not the player is climbing a climbable surface
+        /// </summary>
+        public bool IsClimbing
+        {
+            get { return isClimbing; }
+        }
+        bool isClimbing;
+
+        /// <summary>
         /// Current user movement input.
         /// </summary>
         private float movement;
@@ -182,15 +191,33 @@ namespace ThePrincessBard
 
             ApplyPhysics(gameTime);
 
-            if (IsAlive && IsOnGround)
+            if (IsAlive)
             {
-                if (Math.Abs(Velocity.X) - 0.02f > 0)
+                if (IsOnGround)
                 {
-                    sprite.PlayAnimation(runAnimation);
+                    if (Math.Abs(Velocity.X) - 0.02f > 0)
+                    {
+                        sprite.PlayAnimation(runAnimation);
+                    }
+                    else
+                    {
+                        sprite.PlayAnimation(idleAnimation);
+                    }
                 }
-                else
+                else if (IsClimbing)
                 {
-                    sprite.PlayAnimation(idleAnimation);
+                    if (Velocity.Y - 0.02f > 0)
+                    {
+                        sprite.PlayAnimation(climbUpAnimation);
+                    }
+                    else if (Velocity.Y - 0.02f < 0)
+                    {
+                        sprite.PlayAnimation(climbDownAnimation);
+                    }
+                    else
+                    {
+                        sprite.PlayAnimation(idleAnimation);
+                    }
                 }
             }
 
