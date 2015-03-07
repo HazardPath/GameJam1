@@ -53,6 +53,16 @@ namespace ThePrincessBard
         bool isLooping;
 
         /// <summary>
+        /// When the end of the animation is reached, should it
+        /// continue playing from the beginning?
+        /// </summary>
+        public bool IsSquare
+        {
+            get { return isSquare; }
+        }
+        bool isSquare;
+
+        /// <summary>
         /// Gets the number of frames in the animation.
         /// </summary>
         public int FrameCount
@@ -65,9 +75,14 @@ namespace ThePrincessBard
         /// </summary>
         public int FrameWidth
         {
-            // Assume square frames.
-            get { return Texture.Height; }
+            // square frames.
+            get 
+            {
+                if (IsSquare) return Texture.Height;
+                else return frameWidth;
+            }
         }
+        int frameWidth;
 
         /// <summary>
         /// Gets the height of a frame in the animation.
@@ -79,12 +94,26 @@ namespace ThePrincessBard
 
         /// <summary>
         /// Constructors a new animation.
+        /// New constructor; can take rectangular frames
+        /// </summary>        
+        public Animation(Texture2D texture, float frameTime, bool isLooping, int frameWidth)
+        {
+            this.texture = texture;
+            this.frameTime = frameTime;
+            this.isLooping = isLooping;
+            this.frameWidth = FrameWidth;
+        }
+
+        /// <summary>
+        /// Constructors a new animation.
+        /// Old constructor; assumes square frames.
         /// </summary>        
         public Animation(Texture2D texture, float frameTime, bool isLooping)
         {
             this.texture = texture;
             this.frameTime = frameTime;
             this.isLooping = isLooping;
+            this.isSquare = true;
         }
     }
 }
