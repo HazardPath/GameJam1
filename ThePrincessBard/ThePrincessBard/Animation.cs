@@ -19,6 +19,8 @@ namespace ThePrincessBard
     /// Currently, this class assumes that each frame of animation is
     /// as wide as each animation is tall. The number of frames in the
     /// animation are inferred from this.
+    /// 
+    /// TODO: change to variable width/height/framenumber
     /// </remarks>
     class Animation
     {
