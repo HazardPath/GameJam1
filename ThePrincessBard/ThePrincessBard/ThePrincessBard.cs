@@ -19,10 +19,14 @@ namespace ThePrincessBard
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+		Texture2D texGrassMid;
+		Texture2D texDirt;
+		Texture2D texRabbit;
+
         public ThePrincessBard()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+			Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -48,6 +52,7 @@ namespace ThePrincessBard
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+			texGrassMid = this.Content.Load<Texture2D>("LPC_grass_modded1");
         }
 
         /// <summary>

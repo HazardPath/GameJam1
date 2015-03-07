@@ -1,3 +1,13 @@
 Content\graphics\grass.xnb
 Content\graphics\rabbit.xnb
 Content\graphics\rabbit_jump.xnb
+Content\graphics\LPC_dirt1.xnb
+Content\graphics\LPC_dirt2.xnb
+Content\graphics\LPC_dirt_modded1.xnb
+Content\graphics\LPC_grass_modded1_on_dirt1.xnb
+Content\graphics\LPC_wood_plat_1tile.xnb
+Content\graphics\LPC_wood_plat_left.xnb
+Content\graphics\LPC_wood_plat_mid.xnb
+Content\graphics\LPC_wood_plat_right.xnb
+Content\LPC_grass_modded1.xnb
+Content\LPC_grass_modded1.png
