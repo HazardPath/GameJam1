@@ -1,3 +1,5 @@
+spirit: not affected by gravity!
+
 slide/small
 double jump
 climbing/swinging
