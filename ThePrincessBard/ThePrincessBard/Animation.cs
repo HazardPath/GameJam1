@@ -53,8 +53,7 @@ namespace ThePrincessBard
         bool isLooping;
 
         /// <summary>
-        /// When the end of the animation is reached, should it
-        /// continue playing from the beginning?
+        /// Is each frame square, or are width and height different?
         /// </summary>
         public bool IsSquare
         {
