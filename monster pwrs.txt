@@ -1,0 +1,7 @@
+slide/small
+double jump
+climbing/swinging
+glide
+resistance
+strength
+pecking
