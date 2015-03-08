@@ -325,6 +325,16 @@ namespace ThePrincessBard
                     controllables.Add(s);
                     actor = s;
                     break;
+                case 'm':
+                    Rodent m = new Rodent(this, here);
+                    controllables.Add(m);
+                    actor = m;
+                    break;
+                case 'o':
+                    Ostrich o = new Ostrich(this, here);
+                    controllables.Add(o);
+                    actor = o;
+                    break;
             }
 
             if (actor == null)
