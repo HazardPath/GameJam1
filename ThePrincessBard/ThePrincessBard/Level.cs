@@ -231,7 +231,7 @@ namespace ThePrincessBard
         /// <returns>The new tile.</returns>
         private Tile LoadTile(string name, TileCollision collision)
         {
-            return new Tile(Content.Load<Texture2D>("Tiles/" + name), collision);
+            return new Tile(Content.Load<Texture2D>("tiles/" + name), collision);
         }
 
 
