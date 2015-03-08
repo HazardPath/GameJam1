@@ -237,7 +237,7 @@ namespace ThePrincessBard
 
 				// Dirt
 				case 'd':
-					return LoadTile("grass/dirt_mid_mid", TileCollision.Impassable);
+					return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
 
                 // slant up
                 case '/':
