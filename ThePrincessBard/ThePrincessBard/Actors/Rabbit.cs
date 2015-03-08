@@ -56,13 +56,36 @@ namespace ThePrincessBard.Actors
             //fallSound = Level.Content.Load<SoundEffect>("Sounds/PlayerFall");
         }
 
+        private Random rand = new Random();
+        private float timeWaiting = 0f;
+        private bool idleJumping = false;
+
         protected override void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
             DisplayOrientation orientation,
             GameTime gameTime)
         {
-            
+            if (timeWaiting == 0)
+            {
+                if (idleJumping)
+                {
+                    idleJumping = false;
+                    timeWaiting = /*(float)rand.NextDouble() * 5f +*/ 1f;
+                }
+                else
+                {
+                    idleJumping = true;
+                    timeWaiting = /*(float)rand.NextDouble() * 2f +*/ 0.1f;
+                }
+            }
+            else
+            {
+                timeWaiting -= (gameTime.ElapsedGameTime.Milliseconds/1000f);
+                if (timeWaiting < 0) timeWaiting = 0;
+            }
+
+            isJumping = idleJumping;
         }
     }
 }
