@@ -42,15 +42,79 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\tiles\exit.png">
-      <Name>exit</Name>
+    <None Include="Levels\0.txt">
+      <Name>0</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Graphics\buttons\bigButt1.png">
+      <Name>bigButt1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Graphics\buttons\bigButt2.png">
+      <Name>bigButt2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\buttons\brickButton1.png">
+      <Name>brickButton1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\buttons\brickButton2.png">
+      <Name>brickButton2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\buttons\lilButt1.png">
+      <Name>lilButt1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\buttons\lilButt2.png">
+      <Name>lilButt2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Graphics\fight.png">
       <Name>fight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi.png">
+      <Name>kiwi</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_peck1.png">
+      <Name>kiwi_peck1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_peck2.png">
+      <Name>kiwi_peck2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_peck3.png">
+      <Name>kiwi_peck3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_peck_full.png">
+      <Name>kiwi_peck_full</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_walk.png">
+      <Name>kiwi_walk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\kiwi\kiwi_walk_full.png">
+      <Name>kiwi_walk_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -61,6 +125,11 @@
     </Compile>
     <Compile Include="Graphics\mouse\mouse_walk.png">
       <Name>mouse_walk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\mouse\mouse_walk_full.png">
+      <Name>mouse_walk_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -79,6 +148,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Graphics\ostrich\ostrich_walk_full.png">
+      <Name>ostrich_walk_full</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Graphics\princess\princess.png">
       <Name>princess</Name>
       <Importer>TextureImporter</Importer>
@@ -89,8 +163,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Graphics\princess\princess_walk_full.png">
+      <Name>princess_walk_full</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Graphics\rabbit\rabbit.png">
       <Name>rabbit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\rabbit\rabbit_hop_full.png">
+      <Name>rabbit_hop_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -106,6 +190,11 @@
     </Compile>
     <Compile Include="Graphics\snake\snake.png">
       <Name>snake</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\snake\snake_walk_full.png">
+      <Name>snake_walk_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -129,38 +218,193 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Graphics\squirrel\squiwwel_climb_full.png">
+      <Name>squiwwel_climb_full</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Graphics\squirrel\squiwwel_walk.png">
       <Name>squiwwel_walk</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\grass.png">
-      <Name>grass</Name>
+    <Compile Include="Graphics\squirrel\squiwwel_walk_full.png">
+      <Name>squiwwel_walk_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\LPC_dirt1.png">
-      <Name>LPC_dirt1</Name>
+    <Compile Include="Graphics\tiles\bricks\bricks.png">
+      <Name>bricks</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\LPC_dirt2.png">
-      <Name>LPC_dirt2</Name>
+    <Compile Include="Graphics\tiles\bricks\bricks_lowHalf.png">
+      <Name>bricks_lowHalf</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\LPC_dirt_modded1.png">
-      <Name>LPC_dirt_modded1</Name>
+    <Compile Include="Graphics\tiles\bricks\bricks_stairsToUpLeft.png">
+      <Name>bricks_stairsToUpLeft</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\LPC_grass_modded1.png">
-      <Name>LPC_grass_modded1</Name>
+    <Compile Include="Graphics\tiles\bricks\bricks_stairsToUpRight.png">
+      <Name>bricks_stairsToUpRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\tiles\LPC_grass_modded1_on_dirt1.png">
-      <Name>LPC_grass_modded1_on_dirt1</Name>
+    <Compile Include="Graphics\tiles\bricks\bricks_topHalf.png">
+      <Name>bricks_topHalf</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_left_bot.png">
+      <Name>dirt_left_bot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_left_mid.png">
+      <Name>dirt_left_mid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_left_single.png">
+      <Name>dirt_left_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_left_top.png">
+      <Name>dirt_left_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_mid_bot.png">
+      <Name>dirt_mid_bot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_mid_mid.png">
+      <Name>dirt_mid_mid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_mid_single.png">
+      <Name>dirt_mid_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_mid_top.png">
+      <Name>dirt_mid_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_right_bot.png">
+      <Name>dirt_right_bot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_right_mid.png">
+      <Name>dirt_right_mid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_right_single.png">
+      <Name>dirt_right_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_right_top.png">
+      <Name>dirt_right_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_single_bot.png">
+      <Name>dirt_single_bot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_single_mid.png">
+      <Name>dirt_single_mid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_single_single.png">
+      <Name>dirt_single_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\dirt\dirt_single_top.png">
+      <Name>dirt_single_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\exit.png">
+      <Name>exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_cornerUpLeft.png">
+      <Name>grass_cornerUpLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_cornerUpLeft_naked.png">
+      <Name>grass_cornerUpLeft_naked</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_cornerUpRight.png">
+      <Name>grass_cornerUpRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_cornerUpRight_naked.png">
+      <Name>grass_cornerUpRight_naked</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_left_single.png">
+      <Name>grass_left_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_left_top.png">
+      <Name>grass_left_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_mid_single.png">
+      <Name>grass_mid_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_mid_top.png">
+      <Name>grass_mid_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_right_single.png">
+      <Name>grass_right_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_right_top.png">
+      <Name>grass_right_top</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_single_single.png">
+      <Name>grass_single_single</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_slantToUpLeft.png">
+      <Name>grass_slantToUpLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\grass\grass_slantToUpRight.png">
+      <Name>grass_slantToUpRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -186,6 +430,16 @@
     </Compile>
     <Compile Include="Graphics\tiles\LPC_wood_plat_right.png">
       <Name>LPC_wood_plat_right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\unused_old_ugly_grass.png">
+      <Name>unused_old_ugly_grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\tiles\unused_oops_angle.png">
+      <Name>unused_oops_angle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -226,17 +480,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\0.txt">
-      <Name>0</Name>
+    <None Include="Levels\1.txt">
+      <Name>1</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Graphics\tiles\bricks.png">
-      <Name>bricks</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
+    <None Include="Levels\2.txt">
+      <Name>2</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

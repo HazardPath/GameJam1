@@ -238,7 +238,7 @@ namespace ThePrincessBard
 
                 // Grass
                 case 'g':
-                    return LoadTile("grass/grass_mid_top", TileCollision.Impassable);
+                    return LoadTile("grass/grass_single_single", TileCollision.Impassable);
 
                 // slant up
                 case '/':
@@ -566,7 +566,7 @@ namespace ThePrincessBard
         private void OnExitReached()
         {
             Player.OnReachedExit();
-            exitReachedSound.Play();
+            //exitReachedSound.Play();
             reachedExit = true;
         }
 

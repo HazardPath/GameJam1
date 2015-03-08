@@ -109,7 +109,11 @@
   <ItemGroup>
     <Compile Include="Actors\Actor.cs" />
     <Compile Include="Actors\Controllable.cs" />
+    <Compile Include="Actors\Kiwi.cs" />
+    <Compile Include="Actors\Ostrich.cs" />
     <Compile Include="Actors\Rabbit.cs" />
+    <Compile Include="Actors\Rodent.cs" />
+    <Compile Include="Actors\Snake.cs" />
     <Compile Include="Actors\Squiwwel.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationPlayer.cs" />
