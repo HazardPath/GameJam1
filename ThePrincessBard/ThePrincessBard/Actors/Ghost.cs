@@ -94,9 +94,11 @@ namespace ThePrincessBard.Actors
             sprite.PlayAnimation(celebrateAnimation);
         }
 
+        /*
         override protected float DoJump(float velocityY, GameTime gameTime)
         {
             return 0;
         }
+        */
     }
 }

@@ -44,7 +44,7 @@ namespace ThePrincessBard.Actors
 
         // Constants for controlling vertical movement
         protected float MaxJumpTime = 0.35f;
-        protected float JumpLaunchVelocity = -3500.0f;
+        protected float JumpLaunchVelocity = -1500.0f;
         protected float GravityAcceleration = 3400.0f;
         protected float MaxFallSpeed = 550.0f;
         protected float JumpControlPower = 0.14f;

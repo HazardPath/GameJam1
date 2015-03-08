@@ -255,7 +255,7 @@ namespace ThePrincessBard
 
 
         /// <summary>
-        /// Instantiates a player, puts him in the level, and remembers where to put him when he is resurrected.
+        /// Instantiates a player, puts her in the level, and remembers where to put her when she is resurrected.
         /// </summary>
         private Tile LoadStartTile(int x, int y)
         {
