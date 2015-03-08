@@ -210,8 +210,11 @@ namespace ThePrincessBard
                 case 'r':
                     return LoadActor(tileType, x, y);
 
-                //Squirrel
+                //Snake
                 case 's':
+                    return LoadActor(tileType, x, y);
+
+                case 'q':
                     return LoadActor(tileType, x, y);
 
                 // Impassable block
@@ -284,8 +287,11 @@ namespace ThePrincessBard
                 case 'r':
                     actor = new Rabbit(this, here);
                     break;
-                case 's':
+                case 'q':
                     actor = new Squiwwel(this, here);
+                    break;
+                case 's':
+                    actor = new Snake(this, here);
                     break;
             }
 
