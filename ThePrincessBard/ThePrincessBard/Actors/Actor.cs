@@ -22,8 +22,10 @@ namespace ThePrincessBard.Actors
         protected Animation runAnimation;
         protected Animation jumpAnimation;
         protected Animation dieAnimation;
-        protected Animation climbUpAnimation = null;
-        protected Animation climbDownAnimation = null;
+        protected Animation climbUpAnimationL = null;
+        protected Animation climbUpAnimationR = null;
+        protected Animation climbDownAnimationL = null;
+        protected Animation climbDownAnimationR = null;
         protected SpriteEffects flip = SpriteEffects.None;
         protected AnimationPlayer sprite;
 
@@ -104,6 +106,15 @@ namespace ThePrincessBard.Actors
         }
         protected bool isClimbing;
 
+        /// <summary>
+        /// If the player is climbing a climbable surface, gets whether the surface is on the left or not
+        /// </summary>
+        public bool ClimbableLeft
+        {
+            get { return climbableLeft; }
+        }
+        protected bool climbableLeft;
+
 
         protected Rectangle localBounds;
         /// <summary>
@@ -165,11 +176,17 @@ namespace ThePrincessBard.Actors
                 {
                     if (Velocity.Y - 0.02f > 0)
                     {
-                        sprite.PlayAnimation(climbUpAnimation);
+                        if (ClimbableLeft)
+                            sprite.PlayAnimation(climbUpAnimationL);
+                        else
+                            sprite.PlayAnimation(climbUpAnimationR);
                     }
                     else if (Velocity.Y - 0.02f < 0)
                     {
-                        sprite.PlayAnimation(climbDownAnimation);
+                        if (ClimbableLeft)
+                            sprite.PlayAnimation(climbDownAnimationL);
+                        else
+                            sprite.PlayAnimation(climbDownAnimationR);
                     }
                     else
                     {
@@ -264,7 +281,53 @@ namespace ThePrincessBard.Actors
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
-                movement.Y = 1.0f;
+                movement.X = 1.0f;
+            }
+
+            // If any digital vertical movement input is found, override the analog movement.
+            if (gamePadState.IsButtonDown(Buttons.DPadDown) ||
+                keyboardState.IsKeyDown(Keys.Down) ||
+                keyboardState.IsKeyDown(Keys.S))
+            {
+                isClimbing = false;
+                if (IsAlignedLeftToClimbable() && level.GetCollision((int) Position.X + 1, (int) Position.Y) == TileCollision.Climbable)
+                {
+                        isClimbing = true;
+                        climbableLeft = true;
+                        isJumping = false;
+                        isOnGround = false;
+                        movement.Y = 2.0f;
+                }
+                else if (IsAlignedRightToClimbable() && level.GetCollision((int) Position.X - 1, (int) Position.Y) == TileCollision.Climbable)
+                {
+                    isClimbing = true;
+                    climbableLeft = false;
+                    isJumping = false;
+                    isOnGround = false;
+                    movement.Y = 2.0f;
+                }
+            }
+            else if (gamePadState.IsButtonDown(Buttons.DPadUp) ||
+                     keyboardState.IsKeyDown(Keys.Up) ||
+                     keyboardState.IsKeyDown(Keys.W))
+            {
+                isClimbing = false;
+                if (IsAlignedLeftToClimbable() && level.GetCollision((int)Position.X + 1, (int)Position.Y) == TileCollision.Climbable)
+                {
+                    isClimbing = true;
+                    climbableLeft = true;
+                    isJumping = false;
+                    isOnGround = false;
+                    movement.Y = -1.0f;
+                }
+                else if (IsAlignedRightToClimbable() && level.GetCollision((int)Position.X - 1, (int)Position.Y) == TileCollision.Climbable)
+                {
+                    isClimbing = true;
+                    climbableLeft = false;
+                    isJumping = false;
+                    isOnGround = false;
+                    movement.Y = -1.0f;
+                }
             }
 
             // Check if the player wants to jump.
@@ -273,6 +336,18 @@ namespace ThePrincessBard.Actors
                 keyboardState.IsKeyDown(Keys.Space) ||
                 keyboardState.IsKeyDown(Keys.Up) ||
                 keyboardState.IsKeyDown(Keys.W);
+        }
+
+        private bool IsAlignedLeftToClimbable()
+        {
+            //TODO: stuff
+            return false;
+        }
+        
+        private bool IsAlignedRightToClimbable()
+        {
+            //TODO: stuff
+            return false;
         }
 
         /// <summary>
