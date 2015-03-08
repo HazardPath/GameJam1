@@ -1,2 +1,5 @@
 *.cache
 ThePrincessBard.suo
+*.xnb
+*.pdb
+*.exe

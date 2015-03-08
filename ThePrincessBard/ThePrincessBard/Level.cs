@@ -32,11 +32,11 @@ namespace ThePrincessBard
         private const int EntityLayer = 2;
 
         // Entities in the level.
-        public Player Player
+        public Ghost Player
         {
             get { return player; }
         }
-        Player player;
+        Ghost player;
 
         private List<Gem> gems = new List<Gem>();
         private List<Enemy> enemies = new List<Enemy>();
@@ -269,7 +269,7 @@ namespace ThePrincessBard
                 throw new NotSupportedException("A level may only have one starting point.");
 
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
-            player = new Player(this, start);
+            player = new Ghost(this, start);
 
             return new Tile(null, TileCollision.Passable);
         }
@@ -460,7 +460,7 @@ namespace ThePrincessBard
         /// </summary>
         /// <param name="gem">The gem that was collected.</param>
         /// <param name="collectedBy">The player who collected this gem.</param>
-        private void OnGemCollected(Gem gem, Player collectedBy)
+        private void OnGemCollected(Gem gem, Ghost collectedBy)
         {
             score += Gem.PointValue;
 

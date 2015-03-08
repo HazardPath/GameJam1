@@ -13,85 +13,19 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace ThePrincessBard
+namespace ThePrincessBard.Actors
 {
     /// <summary>
     /// Our fearless adventurer!
     /// </summary>
-    class Player
+    class Ghost : Controllable
     {
-        // Animations
-        private Animation idleAnimation;
-        private Animation runAnimation;
-        private Animation jumpAnimation;
-        private Animation celebrateAnimation;
-        private Animation dieAnimation;
-        private SpriteEffects flip = SpriteEffects.None;
-        private AnimationPlayer sprite;
-
-        // Sounds
-        private SoundEffect killedSound;
-        private SoundEffect jumpSound;
-        private SoundEffect fallSound;
-
-        public Level Level
-        {
-            get { return level; }
-        }
-        Level level;
-
-        public bool IsAlive
-        {
-            get { return isAlive; }
-        }
-        bool isAlive;
-
-        // Physics state
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-        Vector2 position;
-
         private float previousBottom;
 
-        public Vector2 Velocity
-        {
-            get { return velocity; }
-            set { velocity = value; }
-        }
-        Vector2 velocity;
+        private Animation celebrateAnimation;
 
-        // Constants for controling horizontal movement
-        private const float MoveAcceleration = 13000.0f;
-        private const float MaxMoveSpeed = 1750.0f;
-        private const float GroundDragFactor = 0.48f;
-        private const float AirDragFactor = 0.58f;
-
-        // Constants for controlling vertical movement
-        private const float MaxJumpTime = 0.35f;
-        private const float JumpLaunchVelocity = -3500.0f;
-        private const float GravityAcceleration = 3400.0f;
-        private const float MaxFallSpeed = 550.0f;
-        private const float JumpControlPower = 0.14f; 
-
-        // Input configuration
-        private const float MoveStickScale = 1.0f;
-        private const float AccelerometerScale = 1.5f;
-        private const Buttons JumpButton = Buttons.A;
-
-        /// <summary>
-        /// Gets whether or not the player's feet are on the ground.
-        /// </summary>
-        public bool IsOnGround
-        {
-            get { return isOnGround; }
-        }
-        bool isOnGround;
-
+        protected SoundEffect fallSound;
         
-
         /// <summary>
         /// Current user movement input.
         /// </summary>
@@ -102,25 +36,10 @@ namespace ThePrincessBard
         private bool wasJumping;
         private float jumpTime;
 
-        private Rectangle localBounds;
-        /// <summary>
-        /// Gets a rectangle which bounds this player in world space.
-        /// </summary>
-        public Rectangle BoundingRectangle
-        {
-            get
-            {
-                int left = (int)Math.Round(Position.X - sprite.Origin.X) + localBounds.X;
-                int top = (int)Math.Round(Position.Y - sprite.Origin.Y) + localBounds.Y;
-
-                return new Rectangle(left, top, localBounds.Width, localBounds.Height);
-            }
-        }
-
         /// <summary>
         /// Constructors a new player.
         /// </summary>
-        public Player(Level level, Vector2 position)
+        public Ghost(Level level, Vector2 position)
         {
             this.level = level;
 
