@@ -192,9 +192,13 @@ namespace ThePrincessBard
                 case 'X':
                     return LoadExitTile(x, y);
 
-                // Floating platform
+                // Tree Branch
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
+
+                // Tree Trunk
+                case '|':
+                    return LoadTile("Platform", TileCollision.Climbable);
 
                 // Platform block
                 case '~':
@@ -205,7 +209,7 @@ namespace ThePrincessBard
                     return LoadVarietyTile("BlockB", 2, TileCollision.Passable);
 
                 // Player 1 start point
-                case 'g':
+                case 'p':
                     return LoadStartTile(x, y);
                 
                 // Rabbit
@@ -232,12 +236,16 @@ namespace ThePrincessBard
                 case '#':
                     return LoadTile("bricks", TileCollision.Impassable);
 
+                // Grass
+                case 'g':
+                    return LoadTile("grass", TileCollision.Impassable);
+
                 // slant up
                 case '/':
                     return LoadTile("", TileCollision.Impassable);
 
                 // slant down
-                case '\':
+                case '\\':
                     return LoadTile("", TileCollision.Impassable);
 
                 // Unknown tile type character
@@ -318,6 +326,16 @@ namespace ThePrincessBard
                     Snake s = new Snake(this, here);
                     controllables.Add(s);
                     actor = s;
+                    break;
+                case 'm':
+                    Rodent m = new Rodent(this, here);
+                    controllables.Add(m);
+                    actor = m;
+                    break;
+                case 'o':
+                    Ostrich o = new Ostrich(this, here);
+                    controllables.Add(o);
+                    actor = o;
                     break;
             }
 
