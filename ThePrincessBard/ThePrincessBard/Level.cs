@@ -505,6 +505,8 @@ namespace ThePrincessBard
             }
         }
 
+        public Actor addMeLater = null;
+
         /// <summary>
         /// Animates each enemy and allow them to kill the player.
         /// </summary>
@@ -525,6 +527,12 @@ namespace ThePrincessBard
                     if(isFatal)
                         OnPlayerKilled(actor);
                 }
+            }
+
+            if (addMeLater != null)
+            {
+                actors.Add(addMeLater);
+                addMeLater = null;
             }
         }
 
@@ -627,6 +635,7 @@ namespace ThePrincessBard
 
             foreach (Controllable cur in controllables)
             {
+                if (cur.IsActive) continue;
                 if (cur.BoundingRectangle.Intersects(me.BoundingRectangle))
                 {
                     float newDistance = RectangleExtensions.GetIntersectionDepth(cur.BoundingRectangle, me.BoundingRectangle).Length();

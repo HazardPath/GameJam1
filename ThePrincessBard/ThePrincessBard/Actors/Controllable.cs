@@ -21,7 +21,7 @@ namespace ThePrincessBard.Actors
         }
         protected bool isActive;
 
-        protected bool isPossessHeld = false;
+        protected static bool isPossessHeld = false;
 
         protected abstract void SetIsActive(bool value);
 
@@ -140,6 +140,7 @@ namespace ThePrincessBard.Actors
                         if (this is Ghost)
                         {
                             //do nothing cuz I'm a ghost and I can't find anything
+                            int pass = 0;
                         }
                         else
                         {
@@ -147,7 +148,7 @@ namespace ThePrincessBard.Actors
                             this.IsActive = false;
                             Ghost me = new Ghost(level, this.position);
                             level.Player = me;
-                            level.actors.Add(me);
+                            level.addMeLater = me;
                             level.controllables.Add(me);
                         }
                     }
