@@ -13,5 +13,8 @@ namespace ThePrincessBard
         
         static public Buttons JumpButton = Buttons.A;
         static public Keys JumpKey = Keys.Space;
+
+        static public Buttons PossessButton = Buttons.X;
+        static public Keys PossessKey = Keys.Z;
     }
 }
