@@ -189,16 +189,17 @@ namespace ThePrincessBard
                     return new Tile(null, TileCollision.Passable);
 
                 // Exit
+                case 'x':
                 case 'X':
                     return LoadExitTile(x, y);
 
                 // Tree Branch
                 case '-':
-                    return LoadTile("Platform", TileCollision.Platform);
+                    return LoadTile("tree/leaves_oak", TileCollision.Platform);
 
                 // Tree Trunk
                 case '|':
-                    return LoadTile("Platform", TileCollision.Climbable);
+                    return LoadTile("tree/log_oak", TileCollision.Climbable);
 
                 // Platform block
                 case '~':
@@ -211,23 +212,17 @@ namespace ThePrincessBard
                 // Player 1 start point
                 case 'p':
                     return LoadStartTile(x, y);
-                
+                    
                 // Rabbit
                 case 'r':
-                    return LoadActor(tileType, x, y);
-
                 //Snake
                 case 's':
-                    return LoadActor(tileType, x, y);
-
                 //Squirrel
                 case 'q':
-                    return LoadActor(tileType, x, y);
-
                 //Mouse
                 case 'm':
-                    return LoadActor(tileType, x, y);
-
+                //Kiwi
+                case 'k':
                 //Ostrich
                 case 'o':
                     return LoadActor(tileType, x, y);
@@ -238,15 +233,15 @@ namespace ThePrincessBard
 
                 // Grass
                 case 'g':
-                    return LoadTile("grass/grass_single_single", TileCollision.Impassable);
+                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
 
                 // slant up
                 case '/':
-                    return LoadTile("", TileCollision.Impassable);
+                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
 
                 // slant down
                 case '\\':
-                    return LoadTile("", TileCollision.Impassable);
+                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
@@ -461,7 +456,10 @@ namespace ThePrincessBard
             else
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
-                Player.Update(gameTime, keyboardState, gamePadState, orientation);
+                if (Player is Kiwi)
+                    ((Kiwi)Player).Update(gameTime, keyboardState, gamePadState, orientation);
+                else
+                    Player.Update(gameTime, keyboardState, gamePadState, orientation);
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.

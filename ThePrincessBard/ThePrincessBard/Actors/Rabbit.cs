@@ -15,6 +15,7 @@ namespace ThePrincessBard.Actors
             : base(level, position)
         {
             isActive = false;
+            MaxJumpTime = 0.45f;
         }
 
         protected override void SetIsActive(bool value)

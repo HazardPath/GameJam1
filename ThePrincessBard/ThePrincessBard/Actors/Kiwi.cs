@@ -59,6 +59,34 @@ namespace ThePrincessBard.Actors
         private float timeWaiting = 0f;
         private bool idleJumping = false;
 
+        private float timeWaitedSinceFall = 0f;
+
+        override public void Update(
+            GameTime gameTime,
+            KeyboardState keyboardState,
+            GamePadState gamePadState,
+            DisplayOrientation orientation)
+        {
+            base.Update(gameTime, keyboardState, gamePadState, orientation);
+            if (keyboardState.IsKeyDown(Globals.JumpKey) ||
+                gamePadState.IsButtonDown(Globals.JumpButton))
+            {
+                GravityAcceleration = 0f;
+                if (!IsOnGround)
+                {
+                    timeWaitedSinceFall += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (timeWaitedSinceFall > 0.15)
+                    {
+                        position.Y += 1;
+                    }
+                }
+            }
+            else
+            {
+                GravityAcceleration = 3400.0f;
+            }
+        }
+
         protected override void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,

@@ -15,6 +15,8 @@ namespace ThePrincessBard.Actors
             : base(level, position)
         {
             isActive = false;
+            JumpLaunchVelocity *= 1.8f;
+            MaxJumpTime *= 1.5f;
         }
 
         protected override void SetIsActive(bool value)
