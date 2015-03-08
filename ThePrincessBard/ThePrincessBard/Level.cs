@@ -215,12 +215,29 @@ namespace ThePrincessBard
                 case 's':
                     return LoadActor(tileType, x, y);
 
+                //Squirrel
                 case 'q':
+                    return LoadActor(tileType, x, y);
+
+                //Mouse
+                case 'm':
+                    return LoadActor(tileType, x, y);
+
+                //Ostrich
+                case 'o':
                     return LoadActor(tileType, x, y);
 
                 // Impassable block
                 case '#':
                     return LoadTile("bricks", TileCollision.Impassable);
+
+                // slant up
+                case '/':
+                    return LoadTile("", TileCollision.Impassable);
+
+                // slant down
+                case '\':
+                    return LoadTile("", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
