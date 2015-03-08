@@ -646,7 +646,7 @@ namespace ThePrincessBard
             }
 
             if (cameraTopLeft.X < 0) cameraTopLeft.X = 0;
-            if (cameraTopLeft.Y < 0) cameraTopLeft.Y = 0;
+            //if (cameraTopLeft.Y < 0) cameraTopLeft.Y = 0;
             if (cameraTopLeft.X + view.Width > endOfZeWorld.X) cameraTopLeft.X = endOfZeWorld.X - view.Width;
             if (cameraTopLeft.Y + view.Height > endOfZeWorld.Y) cameraTopLeft.Y = endOfZeWorld.Y - view.Height;
 
