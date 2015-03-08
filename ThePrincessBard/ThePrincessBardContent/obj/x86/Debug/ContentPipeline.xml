@@ -1,7 +1,214 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
-    <BuildSuccessful>false</BuildSuccessful>
+    <Item>
+      <Source>Graphics\Julia Original\grass.png</Source>
+      <Name>Graphics\Julia Original\grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\grass.xnb</Output>
+      <Time>2015-03-07T17:31:39.1622037-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Julia Original\princess.png</Source>
+      <Name>Graphics\Julia Original\princess</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\princess.xnb</Output>
+      <Time>2015-03-07T17:31:38.8721669-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Julia Original\rabbit.png</Source>
+      <Name>Graphics\Julia Original\rabbit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\rabbit.xnb</Output>
+      <Time>2015-03-07T17:31:39.1597034-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Julia Original\rabbit_jump.png</Source>
+      <Name>Graphics\Julia Original\rabbit_jump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\rabbit_jump.xnb</Output>
+      <Time>2015-03-07T17:31:39.156703-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Julia Original\Rabbit_spawner.png</Source>
+      <Name>Graphics\Julia Original\Rabbit_spawner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\Rabbit_spawner.xnb</Output>
+      <Time>2015-03-07T17:31:39.1647041-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Julia Original\snake.png</Source>
+      <Name>Graphics\Julia Original\snake</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\Julia Original\snake.xnb</Output>
+      <Time>2015-03-07T17:31:38.8916694-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_dirt_modded1.png</Source>
+      <Name>Graphics\LPC modified\LPC_dirt_modded1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_dirt_modded1.xnb</Output>
+      <Time>2015-03-07T17:31:39.1467018-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_grass_modded1.png</Source>
+      <Name>Graphics\LPC modified\LPC_grass_modded1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_grass_modded1.xnb</Output>
+      <Time>2015-03-07T17:31:39.1452016-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_grass_modded1_on_dirt1.png</Source>
+      <Name>Graphics\LPC modified\LPC_grass_modded1_on_dirt1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_grass_modded1_on_dirt1.xnb</Output>
+      <Time>2015-03-07T17:31:39.1432013-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_wood_plat_1tile.png</Source>
+      <Name>Graphics\LPC modified\LPC_wood_plat_1tile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_wood_plat_1tile.xnb</Output>
+      <Time>2015-03-07T17:31:39.1412011-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_wood_plat_left.png</Source>
+      <Name>Graphics\LPC modified\LPC_wood_plat_left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_wood_plat_left.xnb</Output>
+      <Time>2015-03-07T17:31:39.1392008-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_wood_plat_mid.png</Source>
+      <Name>Graphics\LPC modified\LPC_wood_plat_mid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_wood_plat_mid.xnb</Output>
+      <Time>2015-03-07T17:31:39.1367005-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC modified\LPC_wood_plat_right.png</Source>
+      <Name>Graphics\LPC modified\LPC_wood_plat_right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC modified\LPC_wood_plat_right.xnb</Output>
+      <Time>2015-03-07T17:31:39.1337001-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC Unmodified\LPC_dirt1.png</Source>
+      <Name>Graphics\LPC Unmodified\LPC_dirt1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC Unmodified\LPC_dirt1.xnb</Output>
+      <Time>2015-03-07T17:31:39.1537027-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC Unmodified\LPC_dirt2.png</Source>
+      <Name>Graphics\LPC Unmodified\LPC_dirt2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC Unmodified\LPC_dirt2.xnb</Output>
+      <Time>2015-03-07T17:31:39.1512023-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\LPC Unmodified\LPC_temp_grass1.png</Source>
+      <Name>Graphics\LPC Unmodified\LPC_temp_grass1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\LPC Unmodified\LPC_temp_grass1.xnb</Output>
+      <Time>2015-03-07T17:31:39.148702-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 1.png</Source>
+      <Name>Graphics\WIP\princess WIP 1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 1.xnb</Output>
+      <Time>2015-03-07T17:31:39.1316999-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 2.png</Source>
+      <Name>Graphics\WIP\princess WIP 2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 2.xnb</Output>
+      <Time>2015-03-07T17:31:39.1296996-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 3.png</Source>
+      <Name>Graphics\WIP\princess WIP 3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 3.xnb</Output>
+      <Time>2015-03-07T17:31:39.1276994-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 4.png</Source>
+      <Name>Graphics\WIP\princess WIP 4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 4.xnb</Output>
+      <Time>2015-03-07T17:31:39.1256991-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 5.png</Source>
+      <Name>Graphics\WIP\princess WIP 5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 5.xnb</Output>
+      <Time>2015-03-07T17:31:39.1236988-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess WIP 6.png</Source>
+      <Name>Graphics\WIP\princess WIP 6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 6.xnb</Output>
+      <Time>2015-03-07T17:31:38.9186728-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\WIP\princess_hairOnly.png</Source>
+      <Name>Graphics\WIP\princess_hairOnly</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess_hairOnly.xnb</Output>
+      <Time>2015-03-07T17:31:39.1216986-05:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>HiDef</TargetProfile>

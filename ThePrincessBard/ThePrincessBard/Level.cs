@@ -13,8 +13,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
-using System.IO;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
+using ThePrincessBard.Actors;
 
 namespace ThePrincessBard
 {
@@ -32,11 +33,11 @@ namespace ThePrincessBard
         private const int EntityLayer = 2;
 
         // Entities in the level.
-        public Ghost Player
+        public Controllable Player
         {
             get { return player; }
         }
-        Ghost player;
+        Controllable player;
 
         private List<Gem> gems = new List<Gem>();
         private List<Enemy> enemies = new List<Enemy>();
@@ -460,7 +461,7 @@ namespace ThePrincessBard
         /// </summary>
         /// <param name="gem">The gem that was collected.</param>
         /// <param name="collectedBy">The player who collected this gem.</param>
-        private void OnGemCollected(Gem gem, Ghost collectedBy)
+        private void OnGemCollected(Gem gem, Controllable collectedBy)
         {
             score += Gem.PointValue;
 

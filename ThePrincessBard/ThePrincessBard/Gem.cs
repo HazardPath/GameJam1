@@ -11,6 +11,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using ThePrincessBard.Actors;
 
 namespace ThePrincessBard
 {
@@ -102,7 +103,7 @@ namespace ThePrincessBard
         /// The player who collected this gem. Although currently not used, this parameter would be
         /// useful for creating special powerup gems. For example, a gem could make the player invincible.
         /// </param>
-        public void OnCollected(Ghost collectedBy)
+        public void OnCollected(Controllable collectedBy)
         {
             collectedSound.Play();
         }

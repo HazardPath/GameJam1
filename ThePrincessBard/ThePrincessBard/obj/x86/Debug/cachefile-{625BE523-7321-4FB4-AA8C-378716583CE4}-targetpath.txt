@@ -1,0 +1,23 @@
+Content\Graphics\Julia Original\grass.xnb
+Content\Graphics\Julia Original\princess.xnb
+Content\Graphics\Julia Original\rabbit.xnb
+Content\Graphics\Julia Original\rabbit_jump.xnb
+Content\Graphics\Julia Original\Rabbit_spawner.xnb
+Content\Graphics\Julia Original\snake.xnb
+Content\Graphics\LPC modified\LPC_dirt_modded1.xnb
+Content\Graphics\LPC modified\LPC_grass_modded1.xnb
+Content\Graphics\LPC modified\LPC_grass_modded1_on_dirt1.xnb
+Content\Graphics\LPC modified\LPC_wood_plat_1tile.xnb
+Content\Graphics\LPC modified\LPC_wood_plat_left.xnb
+Content\Graphics\LPC modified\LPC_wood_plat_mid.xnb
+Content\Graphics\LPC modified\LPC_wood_plat_right.xnb
+Content\Graphics\LPC Unmodified\LPC_dirt1.xnb
+Content\Graphics\LPC Unmodified\LPC_dirt2.xnb
+Content\Graphics\LPC Unmodified\LPC_temp_grass1.xnb
+Content\Graphics\WIP\princess WIP 1.xnb
+Content\Graphics\WIP\princess WIP 2.xnb
+Content\Graphics\WIP\princess WIP 3.xnb
+Content\Graphics\WIP\princess WIP 4.xnb
+Content\Graphics\WIP\princess WIP 5.xnb
+Content\Graphics\WIP\princess WIP 6.xnb
+Content\Graphics\WIP\princess_hairOnly.xnb
