@@ -40,7 +40,7 @@ namespace ThePrincessBard.Actors
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, true, 16);
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_walk"), 0.1f, true, 16);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_climb1"), 0.1f, false, 16);
+            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_climb_full"), 0.1f, false, 16);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, false, 16);
 
             // Calculate bounds within texture size.            
