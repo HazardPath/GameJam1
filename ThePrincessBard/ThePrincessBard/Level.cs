@@ -233,15 +233,19 @@ namespace ThePrincessBard
 
                 // Grass
                 case 'g':
-                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
+                    return LoadTile("grass/grass_mid_top", TileCollision.Impassable);
+
+				// Dirt
+				case 'd':
+					return LoadTile("grass/dirt_mid_mid", TileCollision.Impassable);
 
                 // slant up
                 case '/':
-                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
+					return LoadTile("grass/grass_slantToUpRight", TileCollision.Impassable);
 
                 // slant down
                 case '\\':
-                    return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
+					return LoadTile("grass/grass_slantToUpLeft", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
