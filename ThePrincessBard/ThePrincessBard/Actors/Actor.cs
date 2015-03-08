@@ -322,7 +322,7 @@ namespace ThePrincessBard.Actors
                 // Begin or continue a jump
                 if ((!wasJumping && IsOnGround) || jumpTime > 0.0f)
                 {
-                    if (jumpTime == 0.0f)
+                    //if (jumpTime == 0.0f)
                         //jumpSound.Play();
 
                     jumpTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
