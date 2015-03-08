@@ -14,9 +14,11 @@ namespace ThePrincessBard.Actors
         public bool IsActive
         {
             get { return isActive; }
-            abstract set;
+            set { SetIsActive(value); }
         }
-        private bool isActive;
+        public bool isActive;
+
+        protected abstract void SetIsActive(bool value);
 
         public Controllable(Level level, Vector2 position)
             : base(level, position)

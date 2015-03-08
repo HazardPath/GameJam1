@@ -40,7 +40,7 @@ namespace ThePrincessBard
         Controllable player;
 
         private List<Gem> gems = new List<Gem>();
-        private List<Controllable> people = new List<Controllable>();
+        private List<Actor> actors = new List<Actor>();
 
         // Key locations in the level.        
         private Vector2 start;
@@ -177,6 +177,7 @@ namespace ThePrincessBard
         /// <returns>The loaded tile.</returns>
         private Tile LoadTile(char tileType, int x, int y)
         {
+            // TODO: add code here to load other stuff into the map
             switch (tileType)
             {
                 // Blank space
@@ -194,16 +195,6 @@ namespace ThePrincessBard
                 // Floating platform
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
-
-                // Various enemies
-                case 'A':
-                    return LoadEnemyTile(x, y, "MonsterA");
-                case 'B':
-                    return LoadEnemyTile(x, y, "MonsterB");
-                case 'C':
-                    return LoadEnemyTile(x, y, "MonsterC");
-                case 'D':
-                    return LoadEnemyTile(x, y, "MonsterD");
 
                 // Platform block
                 case '~':
@@ -286,17 +277,6 @@ namespace ThePrincessBard
             exit = GetBounds(x, y).Center;
 
             return LoadTile("Exit", TileCollision.Passable);
-        }
-
-        /// <summary>
-        /// Instantiates an enemy and puts him in the level.
-        /// </summary>
-        private Tile LoadEnemyTile(int x, int y, string spriteSet)
-        {
-            Vector2 position = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
-            people.Add(new Enemy(this, position, spriteSet));
-
-            return new Tile(null, TileCollision.Passable);
         }
 
         /// <summary>
@@ -402,7 +382,7 @@ namespace ThePrincessBard
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)
                     OnPlayerKilled(null);
 
-                UpdateEnemies(gameTime);
+                UpdateActors(gameTime, keyboardState, gamePadState, orientation);
 
                 // The player has reached the exit if they are standing on the ground and
                 // his bounding rectangle contains the center of the exit tile. They can only
@@ -442,16 +422,22 @@ namespace ThePrincessBard
         /// <summary>
         /// Animates each enemy and allow them to kill the player.
         /// </summary>
-        private void UpdateEnemies(GameTime gameTime)
+        private void UpdateActors(
+            GameTime gameTime,
+            KeyboardState keyboardState,
+            GamePadState gamePadState,
+            DisplayOrientation orientation)
         {
-            foreach (Enemy enemy in people)
+            foreach (Actor actor in actors)
             {
-                enemy.Update(gameTime);
+                actor.Update(gameTime, keyboardState, gamePadState, orientation);
 
-                // Touching an enemy instantly kills the player
-                if (enemy.BoundingRectangle.Intersects(Player.BoundingRectangle))
+                // Touching an enemy might kill the player
+                if (actor.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
-                    OnPlayerKilled(enemy);
+                    bool isFatal = actor.HitPlayer(player);
+                    if(isFatal)
+                        OnPlayerKilled(actor);
                 }
             }
         }
@@ -475,7 +461,7 @@ namespace ThePrincessBard
         /// The enemy who killed the player. This is null if the player was not killed by an
         /// enemy, such as when a player falls into a hole.
         /// </param>
-        private void OnPlayerKilled(Enemy killedBy)
+        private void OnPlayerKilled(Actor killedBy)
         {
             Player.OnKilled(killedBy);
         }
@@ -517,8 +503,8 @@ namespace ThePrincessBard
 
             Player.Draw(gameTime, spriteBatch);
 
-            foreach (Enemy enemy in people)
-                enemy.Draw(gameTime, spriteBatch);
+            foreach (Actor actor in actors)
+                actor.Draw(gameTime, spriteBatch);
 
             for (int i = EntityLayer + 1; i < layers.Length; ++i)
                 spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);

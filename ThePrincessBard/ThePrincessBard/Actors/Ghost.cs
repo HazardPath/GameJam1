@@ -27,14 +27,20 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Constructors a new player.
         /// </summary>
-        public Ghost(Level level, Vector2 position)
-            : base(level, position)
+        public Ghost(Level level, Vector2 position) : base(level, position) {}
+
+        protected override void SetIsActive(bool value)
         {
-            this.level = level;
+            if (!isActive && value)
+            {//wasn't active, but is now
+                //TODO spawn yourslef
+            }
+            else if (isActive && !value)
+            {//was active, but isn't now
+                //TODO despawn yourself
+            }
 
-            LoadContent();
-
-            Reset(position);
+            isActive = value;
         }
 
         /// <summary>
@@ -103,7 +109,7 @@ namespace ThePrincessBard.Actors
         /// axis to prevent overlapping. There is some special logic for the Y axis to
         /// handle platforms which behave differently depending on direction of movement.
         /// </summary>
-        protected void HandleCollisions()
+        new protected void HandleCollisions()
         {
             // TODO: Change this to handle collisions with angled tiles correctly.
             // Get the player's bounding rectangle and find neighboring tiles.

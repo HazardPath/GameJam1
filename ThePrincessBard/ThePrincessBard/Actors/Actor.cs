@@ -517,6 +517,11 @@ namespace ThePrincessBard.Actors
             previousBottom = bounds.Bottom;
         }
 
+        public bool HitPlayer(Controllable player)
+        {
+            return false; //hits are not fatal by default, but could be
+        }
+
         /// <summary>
         /// Called when the player has been killed.
         /// </summary>
@@ -524,7 +529,7 @@ namespace ThePrincessBard.Actors
         /// The enemy who killed the player. This parameter is null if the player was
         /// not killed by an enemy (fell into a hole).
         /// </param>
-        public void OnKilled(Enemy killedBy)
+        public void OnKilled(Actor killedBy)
         {
             
         }
