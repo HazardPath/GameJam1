@@ -134,8 +134,15 @@ namespace ThePrincessBard.Actors
                 if (!isPossessHeld)
                 {
                     isPossessHeld = true;
-                    //TODO possess code
-
+                    Controllable posessable = level.GetPosessableThing(this);
+                    if (posessable == null)
+                    {
+                        //TODO do something
+                    }
+                    else
+                    {
+                        //TODO do something else
+                    }
                 }
             }
             else
