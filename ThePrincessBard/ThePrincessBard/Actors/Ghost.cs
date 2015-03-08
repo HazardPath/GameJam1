@@ -35,11 +35,12 @@ namespace ThePrincessBard.Actors
         {
             if (!isActive && value)
             {//wasn't active, but is now
-                //TODO spawn yourslef
+                //I don't care, I'll be set active by someone else
             }
             else if (isActive && !value)
             {//was active, but isn't now
-                //TODO despawn yourself
+                level.controllables.Remove(this);
+                level.actors.Remove(this);
             }
 
             isActive = value;

@@ -134,14 +134,28 @@ namespace ThePrincessBard.Actors
                 if (!isPossessHeld)
                 {
                     isPossessHeld = true;
-                    Controllable posessable = level.GetPosessableThing(this);
-                    if (posessable == null)
+                    Controllable possessable = level.GetPosessableThing(this);
+                    if (possessable == null)
                     {
-                        //TODO do something
+                        if (this is Ghost)
+                        {
+                            //do nothing cuz I'm a ghost and I can't find anything
+                        }
+                        else
+                        {
+                            //create a ghost, then possess it
+                            this.IsActive = false;
+                            Ghost me = new Ghost(level, this.position);
+                            level.Player = me;
+                            level.actors.Add(me);
+                            level.controllables.Add(me);
+                        }
                     }
                     else
                     {
-                        //TODO do something else
+                        //Leave this for that (if it's a Ghost, it'll take care of itself)
+                        this.IsActive = false;
+                        possessable.IsActive = true;
                     }
                 }
             }

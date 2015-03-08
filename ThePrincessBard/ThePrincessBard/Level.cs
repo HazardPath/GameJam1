@@ -36,12 +36,13 @@ namespace ThePrincessBard
         public Controllable Player
         {
             get { return player; }
+            set { player = value; }
         }
         Controllable player;
 
-        private List<Gem> gems = new List<Gem>();
-        private List<Actor> actors = new List<Actor>();
-        private List<Controllable> controllables = new List<Controllable>();
+        public List<Gem> gems = new List<Gem>();
+        public List<Actor> actors = new List<Actor>();
+        public List<Controllable> controllables = new List<Controllable>();
 
         // Key locations in the level.        
         private Vector2 start;
@@ -299,6 +300,7 @@ namespace ThePrincessBard
             player = new Ghost(this, start);
 
             actors.Add(player);
+            controllables.Add(player);
 
             return new Tile(null, TileCollision.Passable);
         }
