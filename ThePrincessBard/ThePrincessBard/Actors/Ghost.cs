@@ -20,14 +20,15 @@ namespace ThePrincessBard.Actors
     /// </summary>
     class Ghost : Controllable
     {
-        private Animation celebrateAnimation;
-
         /// <summary>
         /// Constructors a new player.
         /// </summary>
-        public Ghost(Level level, Vector2 position) : base(level, position) {
+        public Ghost(Level level, Vector2 position)
+            : base(level, position)
+        {
             MoveAcceleration = 6000.0f;
             MaxMoveSpeed = 400.0f;
+            isActive = true;
         }
 
         protected override void SetIsActive(bool value)
@@ -54,7 +55,6 @@ namespace ThePrincessBard.Actors
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, true, 32);
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, true, 32);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, false, 32);
-            celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, false, 32);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, false, 32);
 
             // Calculate bounds within texture size.            
@@ -68,6 +68,14 @@ namespace ThePrincessBard.Actors
             //killedSound = Level.Content.Load<SoundEffect>("Sounds/PlayerKilled");
             //jumpSound = Level.Content.Load<SoundEffect>("Sounds/PlayerJump");
             //fallSound = Level.Content.Load<SoundEffect>("Sounds/PlayerFall");
+        }
+
+        protected override void GetIdleInput(
+            KeyboardState keyboardState,
+            GamePadState gamePadState,
+            DisplayOrientation orientation)
+        {
+            //ghost doesn't idle, it derezzes
         }
 
         /// <summary>
@@ -84,14 +92,6 @@ namespace ThePrincessBard.Actors
             killedSound.Play();
 
             sprite.PlayAnimation(dieAnimation);
-        }
-
-        /// <summary>
-        /// Called when this player reaches the level's exit.
-        /// </summary>
-        public new void OnReachedExit()
-        {
-            sprite.PlayAnimation(celebrateAnimation);
         }
 
         override protected float DoJump(float velocityY, GameTime gameTime)

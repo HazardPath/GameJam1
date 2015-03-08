@@ -190,10 +190,6 @@ namespace ThePrincessBard
                 case 'X':
                     return LoadExitTile(x, y);
 
-                // Gem
-                case 'G':
-                    return LoadGemTile(x, y);
-
                 // Floating platform
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
@@ -207,8 +203,11 @@ namespace ThePrincessBard
                     return LoadVarietyTile("BlockB", 2, TileCollision.Passable);
 
                 // Player 1 start point
-                case '1':
+                case 'g':
                     return LoadStartTile(x, y);
+
+                case 'r':
+                    return LoadActor(tileType, x, y);
 
                 // Impassable block
                 case '#':
@@ -266,6 +265,26 @@ namespace ThePrincessBard
             player = new Ghost(this, start);
 
             actors.Add(player);
+
+            return new Tile(null, TileCollision.Passable);
+        }
+
+        private Tile LoadActor(char tileType, int x, int y)
+        {
+            Vector2 here = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
+
+            Actor actor = null;
+            switch (tileType)
+            {
+                case 'r':
+                    actor = new Rabbit(this, here);
+                    break;
+            }
+
+            if (actor == null)
+                throw new NotSupportedException("Unknown actor type "+tileType);
+
+            actors.Add(actor);
 
             return new Tile(null, TileCollision.Passable);
         }
