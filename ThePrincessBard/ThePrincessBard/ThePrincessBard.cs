@@ -76,6 +76,19 @@ namespace ThePrincessBard
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //Known issue that you get exceptions if you use Media PLayer while connected to your PC
+            //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
+            //Which means its impossible to test this from VS.
+            //So we have to catch the exception and throw it away
+            try
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
+            }
+            catch { }
+
+            LoadNextLevel();
         }
 
         /// <summary>
@@ -166,7 +179,11 @@ namespace ThePrincessBard
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            level.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

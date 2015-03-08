@@ -100,7 +100,8 @@ namespace ThePrincessBard
             this.texture = texture;
             this.frameTime = frameTime;
             this.isLooping = isLooping;
-            this.frameWidth = FrameWidth;
+            this.frameWidth = frameWidth;
+            this.isSquare = false;
         }
 
         /// <summary>

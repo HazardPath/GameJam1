@@ -101,16 +101,17 @@ namespace ThePrincessBard
 
             // Load background layer textures. For now, all levels must
             // use the same backgrounds and only use the left-most part of them.
-            layers = new Texture2D[3];
-            for (int i = 0; i < layers.Length; ++i)
-            {
+            //TODO this right
+            //layers = new Texture2D[3];
+            //for (int i = 0; i < layers.Length; ++i)
+            //{
                 // Choose a random segment if each background layer for level variety.
-                int segmentIndex = levelIndex;
-                layers[i] = Content.Load<Texture2D>("Backgrounds/Layer" + i + "_" + segmentIndex);
-            }
+            //    int segmentIndex = levelIndex;
+            //    layers[i] = Content.Load<Texture2D>("Backgrounds/Layer" + i + "_" + segmentIndex);
+            //}
 
             // Load sounds.
-            exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
+            //exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
         }
 
         /// <summary>
@@ -159,6 +160,7 @@ namespace ThePrincessBard
             if (exit == InvalidPosition)
                 throw new NotSupportedException("A level must have an exit.");
 
+            Player.IsActive = true;
         }
 
         /// <summary>
@@ -210,7 +212,7 @@ namespace ThePrincessBard
 
                 // Impassable block
                 case '#':
-                    return LoadVarietyTile("BlockA", 7, TileCollision.Impassable);
+                    return LoadTile("bricks", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
@@ -231,7 +233,7 @@ namespace ThePrincessBard
         /// <returns>The new tile.</returns>
         private Tile LoadTile(string name, TileCollision collision)
         {
-            return new Tile(Content.Load<Texture2D>("tiles/" + name), collision);
+            return new Tile(Content.Load<Texture2D>("Graphics/tiles/" + name), collision);
         }
 
 
@@ -263,6 +265,8 @@ namespace ThePrincessBard
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             player = new Ghost(this, start);
 
+            actors.Add(player);
+
             return new Tile(null, TileCollision.Passable);
         }
 
@@ -276,7 +280,7 @@ namespace ThePrincessBard
 
             exit = GetBounds(x, y).Center;
 
-            return LoadTile("Exit", TileCollision.Passable);
+            return LoadTile("exit", TileCollision.Passable);
         }
 
         /// <summary>
@@ -493,21 +497,21 @@ namespace ThePrincessBard
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for (int i = 0; i <= EntityLayer; ++i)
-                spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
+            //for (int i = 0; i <= EntityLayer; ++i)
+                //spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
 
             DrawTiles(spriteBatch);
 
             foreach (Gem gem in gems)
                 gem.Draw(gameTime, spriteBatch);
 
-            Player.Draw(gameTime, spriteBatch);
+            //Player.Draw(gameTime, spriteBatch);
 
             foreach (Actor actor in actors)
                 actor.Draw(gameTime, spriteBatch);
 
-            for (int i = EntityLayer + 1; i < layers.Length; ++i)
-                spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
+            //for (int i = EntityLayer + 1; i < layers.Length; ++i)
+                //spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
         }
 
         /// <summary>

@@ -36,18 +36,18 @@ namespace ThePrincessBard.Actors
         protected SoundEffect jumpSound = null;
 
         // Constants for controling horizontal movement
-        protected const float MoveAcceleration = 13000.0f;
-        protected const float MaxMoveSpeed = 1750.0f;
-        protected const float GroundDragFactor = 0.48f;
-        protected const float AirDragFactor = 0.58f;
-        protected const int climbReach = 12;
+        protected float MoveAcceleration = 13000.0f;
+        protected float MaxMoveSpeed = 1750.0f;
+        protected float GroundDragFactor = 0.48f;
+        protected float AirDragFactor = 0.58f;
+        protected int climbReach = 12;
 
         // Constants for controlling vertical movement
-        protected const float MaxJumpTime = 0.35f;
-        protected const float JumpLaunchVelocity = -3500.0f;
-        protected const float GravityAcceleration = 3400.0f;
-        protected const float MaxFallSpeed = 550.0f;
-        protected const float JumpControlPower = 0.14f;
+        protected float MaxJumpTime = 0.35f;
+        protected float JumpLaunchVelocity = -3500.0f;
+        protected float GravityAcceleration = 3400.0f;
+        protected float MaxFallSpeed = 550.0f;
+        protected float JumpControlPower = 0.14f;
 
         // Jumping state
         protected bool isJumping;
@@ -399,7 +399,7 @@ namespace ThePrincessBard.Actors
                 if ((!wasJumping && IsOnGround) || jumpTime > 0.0f)
                 {
                     if (jumpTime == 0.0f)
-                        jumpSound.Play();
+                        //jumpSound.Play();
 
                     jumpTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     sprite.PlayAnimation(jumpAnimation);
