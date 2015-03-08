@@ -238,7 +238,7 @@ namespace ThePrincessBard
 
                 // Grass
                 case 'g':
-                    return LoadTile("grass", TileCollision.Impassable);
+                    return LoadTile("grass_single_single", TileCollision.Impassable);
 
                 // slant up
                 case '/':
@@ -246,7 +246,7 @@ namespace ThePrincessBard
 
                 // slant down
                 case '\\':
-                    return LoadTile("", TileCollision.Impassable);
+                    return LoadTile("grass_slantToUpLeft", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
