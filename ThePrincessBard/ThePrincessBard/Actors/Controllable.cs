@@ -11,6 +11,13 @@ namespace ThePrincessBard.Actors
     /// </summary>
     abstract class Controllable : Actor
     {
+        public bool IsActive
+        {
+            get { return isActive; }
+            abstract set;
+        }
+        private bool isActive;
+
         public Controllable(Level level, Vector2 position)
             : base(level, position)
         {

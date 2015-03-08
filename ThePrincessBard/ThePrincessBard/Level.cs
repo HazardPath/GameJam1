@@ -40,7 +40,7 @@ namespace ThePrincessBard
         Controllable player;
 
         private List<Gem> gems = new List<Gem>();
-        private List<Enemy> enemies = new List<Enemy>();
+        private List<Controllable> people = new List<Controllable>();
 
         // Key locations in the level.        
         private Vector2 start;
@@ -294,7 +294,7 @@ namespace ThePrincessBard
         private Tile LoadEnemyTile(int x, int y, string spriteSet)
         {
             Vector2 position = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
-            enemies.Add(new Enemy(this, position, spriteSet));
+            people.Add(new Enemy(this, position, spriteSet));
 
             return new Tile(null, TileCollision.Passable);
         }
@@ -444,7 +444,7 @@ namespace ThePrincessBard
         /// </summary>
         private void UpdateEnemies(GameTime gameTime)
         {
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in people)
             {
                 enemy.Update(gameTime);
 
@@ -517,7 +517,7 @@ namespace ThePrincessBard
 
             Player.Draw(gameTime, spriteBatch);
 
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in people)
                 enemy.Draw(gameTime, spriteBatch);
 
             for (int i = EntityLayer + 1; i < layers.Length; ++i)
