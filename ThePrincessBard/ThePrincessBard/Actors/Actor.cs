@@ -52,7 +52,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Current user movement input.
         /// </summary>
-        protected float movement;
+        protected Vector2 movement;
 
         public Level Level
         {
@@ -179,7 +179,7 @@ namespace ThePrincessBard.Actors
             }
 
             // Clear input.
-            movement = 0.0f;
+            movement = Vector2.Zero;
             isJumping = false;
         }
 
@@ -204,7 +204,7 @@ namespace ThePrincessBard.Actors
 
             // Base velocity is a combination of horizontal movement control and
             // acceleration downward due to gravity.
-            velocity.X += movement * MoveAcceleration * elapsed;
+            velocity.X += movement.X * MoveAcceleration * elapsed;
             velocity.Y = MathHelper.Clamp(velocity.Y + GravityAcceleration * elapsed, -MaxFallSpeed, MaxFallSpeed);
 
             velocity.Y = DoJump(velocity.Y, gameTime);
@@ -212,6 +212,8 @@ namespace ThePrincessBard.Actors
             // Apply pseudo-drag horizontally.
             if (IsOnGround)
                 velocity.X *= GroundDragFactor;
+            else if (IsClimbing)
+                velocity.Y *= GroundDragFactor;
             else
                 velocity.X *= AirDragFactor;
 
@@ -241,25 +243,28 @@ namespace ThePrincessBard.Actors
             GamePadState gamePadState,
             DisplayOrientation orientation)
         {
-            // Get analog horizontal movement.
-            movement = gamePadState.ThumbSticks.Left.X * Globals.MoveStickScale;
+            // Get analog cardinal movement.
+            movement.X = gamePadState.ThumbSticks.Left.X * Globals.MoveStickScale;
+            movement.Y = gamePadState.ThumbSticks.Left.Y * Globals.MoveStickScale;
 
             // Ignore small movements to prevent running in place.
-            if (Math.Abs(movement) < 0.5f)
-                movement = 0.0f;
+            if (Math.Abs(movement.X) < 0.5f)
+                movement.X = 0.0f;
+            if (Math.Abs(movement.Y) < 0.5f)
+                movement.Y = 0.0f;
 
             // If any digital horizontal movement input is found, override the analog movement.
             if (gamePadState.IsButtonDown(Buttons.DPadLeft) ||
                 keyboardState.IsKeyDown(Keys.Left) ||
                 keyboardState.IsKeyDown(Keys.A))
             {
-                movement = -1.0f;
+                movement.X = -1.0f;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
-                movement = 1.0f;
+                movement.Y = 1.0f;
             }
 
             // Check if the player wants to jump.
