@@ -39,7 +39,7 @@ namespace ThePrincessBard.Actors
             // TODO: This is kinda wrong use the right thing once we have it
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/snake/snake"), 0.1f, true, 64);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/snake/snake"), 0.1f, true, 64);
+            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/snake/snake_walk_full"), 0.1f, true, 64);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/snake/snake"), 0.1f, false, 64);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/snake/snake"), 0.1f, false, 64);
 
