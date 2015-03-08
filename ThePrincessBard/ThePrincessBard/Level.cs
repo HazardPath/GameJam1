@@ -335,6 +335,11 @@ namespace ThePrincessBard
                     controllables.Add(o);
                     actor = o;
                     break;
+                case 'k':
+                    Kiwi k = new Kiwi(this, here);
+                    controllables.Add(k);
+                    actor = k;
+                    break;
             }
 
             if (actor == null)
