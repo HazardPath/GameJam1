@@ -3,3 +3,9 @@ ThePrincessBard.suo
 *.xnb
 *.pdb
 *.exe
+ThePrincessBard/ThePrincessBard/obj/x86/Debug/cachefile-{625BE523-7321-4FB4-AA8C-378716583CE4}-targetpath.txt
+*.csproj
+ThePrincessBard/ThePrincessBard/obj/x86/Debug/ThePrincessBard.csproj.FileListAbsolute.txt
+*.cachefile
+ThePrincessBard/ThePrincessBardContent/obj/x86/Debug/ContentPipeline.xml
+*.contentproj
