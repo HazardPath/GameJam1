@@ -17,18 +17,7 @@ C:\Users\Julia\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86
 C:\Users\Julia\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\graphics\LPC_wood_plat_right.xnb
 C:\Users\Julia\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\LPC_grass_modded1.xnb
 C:\Users\Julia\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\LPC_grass_modded1.png
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\ThePrincessBard.exe
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\ThePrincessBard.pdb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.exe
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.pdb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 1.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 2.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 3.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 4.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 5.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 6.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess_hairOnly.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\exit.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\fight.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\mouse\mouse.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\mouse\mouse_walk.xnb
@@ -57,6 +46,17 @@ C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Cont
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\LPC_wood_plat_left.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\LPC_wood_plat_mid.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\LPC_wood_plat_right.xnb
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Levels\0.txt
-C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\exit.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 1.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 2.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 3.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 4.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 5.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess WIP 6.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\WIP\princess_hairOnly.xnb
 C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Graphics\tiles\bricks.xnb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\Content\Levels\0.txt
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\ThePrincessBard.exe
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\bin\x86\Debug\ThePrincessBard.pdb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.exe
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.pdb

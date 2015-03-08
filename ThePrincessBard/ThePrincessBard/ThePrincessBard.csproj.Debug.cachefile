@@ -1,10 +1,4 @@
-Content\Graphics\WIP\princess WIP 1.xnb
-Content\Graphics\WIP\princess WIP 2.xnb
-Content\Graphics\WIP\princess WIP 3.xnb
-Content\Graphics\WIP\princess WIP 4.xnb
-Content\Graphics\WIP\princess WIP 5.xnb
-Content\Graphics\WIP\princess WIP 6.xnb
-Content\Graphics\WIP\princess_hairOnly.xnb
+Content\Graphics\tiles\exit.xnb
 Content\Graphics\fight.xnb
 Content\Graphics\mouse\mouse.xnb
 Content\Graphics\mouse\mouse_walk.xnb
@@ -33,6 +27,12 @@ Content\Graphics\tiles\LPC_wood_plat_1tile.xnb
 Content\Graphics\tiles\LPC_wood_plat_left.xnb
 Content\Graphics\tiles\LPC_wood_plat_mid.xnb
 Content\Graphics\tiles\LPC_wood_plat_right.xnb
-Content\Graphics\tiles\exit.xnb
+Content\Graphics\WIP\princess WIP 1.xnb
+Content\Graphics\WIP\princess WIP 2.xnb
+Content\Graphics\WIP\princess WIP 3.xnb
+Content\Graphics\WIP\princess WIP 4.xnb
+Content\Graphics\WIP\princess WIP 5.xnb
+Content\Graphics\WIP\princess WIP 6.xnb
+Content\Graphics\WIP\princess_hairOnly.xnb
 Content\Graphics\tiles\bricks.xnb
 Content\Levels\0.txt

@@ -153,7 +153,7 @@ namespace ThePrincessBard.Actors
         /// once per frame. We also pass the game's orientation because when using the accelerometer,
         /// we need to reverse our motion when the orientation is in the LandscapeRight orientation.
         /// </remarks>
-        public void Update(
+        virtual public void Update(
             GameTime gameTime,
             KeyboardState keyboardState,
             GamePadState gamePadState,
@@ -210,7 +210,7 @@ namespace ThePrincessBard.Actors
 
         abstract public void LoadContent();
 
-        public void Reset(Vector2 position)
+        virtual public void Reset(Vector2 position)
         {
             Position = position;
             Velocity = Vector2.Zero;
@@ -221,7 +221,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Updates the player's velocity and position based on input, gravity, etc.
         /// </summary>
-        public void ApplyPhysics(GameTime gameTime)
+        virtual public void ApplyPhysics(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -274,7 +274,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Gets player horizontal movement and jump commands from input.
         /// </summary>
-        protected void GetInput(
+        virtual protected void GetInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
             DisplayOrientation orientation)
@@ -366,7 +366,7 @@ namespace ThePrincessBard.Actors
             //TODO: stuff
             return false;
         }
-        
+
         private bool IsAlignedRightToClimbable()
         {
             //TODO: stuff
@@ -390,7 +390,7 @@ namespace ThePrincessBard.Actors
         /// A new Y velocity if beginning or continuing a jump.
         /// Otherwise, the existing Y velocity.
         /// </returns>
-        protected float DoJump(float velocityY, GameTime gameTime)
+        virtual protected float DoJump(float velocityY, GameTime gameTime)
         {
             // If the player wants to jump
             if (isJumping)
@@ -433,7 +433,7 @@ namespace ThePrincessBard.Actors
         /// axis to prevent overlapping. There is some special logic for the Y axis to
         /// handle platforms which behave differently depending on direction of movement.
         /// </summary>
-        protected void HandleCollisions()
+        virtual protected void HandleCollisions()
         {
             // Get the player's bounding rectangle and find neighboring tiles.
             Rectangle bounds = BoundingRectangle;
@@ -517,7 +517,7 @@ namespace ThePrincessBard.Actors
             previousBottom = bounds.Bottom;
         }
 
-        public bool HitPlayer(Controllable player)
+        virtual public bool HitPlayer(Controllable player)
         {
             return false; //hits are not fatal by default, but could be
         }
@@ -529,7 +529,7 @@ namespace ThePrincessBard.Actors
         /// The enemy who killed the player. This parameter is null if the player was
         /// not killed by an enemy (fell into a hole).
         /// </param>
-        public void OnKilled(Actor killedBy)
+        virtual public void OnKilled(Actor killedBy)
         {
             
         }
@@ -537,7 +537,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Called when this player reaches the level's exit.
         /// </summary>
-        public void OnReachedExit()
+        virtual public void OnReachedExit()
         {
             
         }
@@ -545,7 +545,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Draws the animated player.
         /// </summary>
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        virtual public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // Flip the sprite to face the way we are moving.
             if (Velocity.X > 0)
