@@ -234,11 +234,11 @@ namespace ThePrincessBard
 
                 // Impassable block
                 case '#':
-                    return LoadTile("bricks", TileCollision.Impassable);
+                    return LoadTile("bricks/bricks", TileCollision.Impassable);
 
                 // Grass
                 case 'g':
-                    return LoadTile("grass_single_single", TileCollision.Impassable);
+                    return LoadTile("grass/grass_mid_top", TileCollision.Impassable);
 
                 // slant up
                 case '/':
@@ -246,7 +246,7 @@ namespace ThePrincessBard
 
                 // slant down
                 case '\\':
-                    return LoadTile("grass_slantToUpLeft", TileCollision.Impassable);
+                    return LoadTile("", TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
@@ -590,24 +590,73 @@ namespace ThePrincessBard
             //for (int i = 0; i <= EntityLayer; ++i)
                 //spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
 
-            DrawTiles(spriteBatch);
+            //Get the camera offset for everything
+            Vector2 offset = GetCameraOffset(spriteBatch.GraphicsDevice.Viewport);
 
-            foreach (Gem gem in gems)
-                gem.Draw(gameTime, spriteBatch);
+            DrawTiles(spriteBatch, offset);
 
+            //foreach (Gem gem in gems)
+                //gem.Draw(gameTime, spriteBatch);
+            
             //Player.Draw(gameTime, spriteBatch);
 
             foreach (Actor actor in actors)
-                actor.Draw(gameTime, spriteBatch);
+                actor.Draw(gameTime, spriteBatch, offset);
 
             //for (int i = EntityLayer + 1; i < layers.Length; ++i)
                 //spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
         }
 
+        private Vector2 oldCameraOffset = Vector2.Zero;
+
+        private Vector2 GetCameraOffset(Viewport view)
+        {
+            Vector2 screenSize = new Vector2(view.Width, view.Height);
+            Vector2 playerPos = player.Position;
+            Vector2 endOfZeWorld = new Vector2(Tile.Size.X * Width, Tile.Size.Y * Height);
+
+            Vector2 cameraTopLeft = playerPos - (screenSize/2);
+
+            Vector2 cameraBox = new Vector2(view.Width / 4, view.Height / 4);
+
+            if (Math.Abs(cameraTopLeft.X - oldCameraOffset.X) < cameraBox.X)
+            {
+                cameraTopLeft.X = oldCameraOffset.X;
+            }
+            else
+            {
+                if (cameraTopLeft.X < oldCameraOffset.X)
+                    cameraTopLeft.X += cameraBox.X;
+                else
+                    cameraTopLeft.X -= cameraBox.X;
+            }
+
+            if (Math.Abs(cameraTopLeft.Y - oldCameraOffset.Y) < cameraBox.Y)
+            {
+                cameraTopLeft.Y = oldCameraOffset.Y;
+            }
+            else
+            {
+                if (cameraTopLeft.Y < oldCameraOffset.Y)
+                    cameraTopLeft.Y += cameraBox.Y;
+                else
+                    cameraTopLeft.Y -= cameraBox.Y;
+            }
+
+            if (cameraTopLeft.X < 0) cameraTopLeft.X = 0;
+            if (cameraTopLeft.Y < 0) cameraTopLeft.Y = 0;
+            if (cameraTopLeft.X + view.Width > endOfZeWorld.X) cameraTopLeft.X = endOfZeWorld.X - view.Width;
+            if (cameraTopLeft.Y + view.Height > endOfZeWorld.Y) cameraTopLeft.Y = endOfZeWorld.Y - view.Height;
+
+            oldCameraOffset = cameraTopLeft;
+
+            return cameraTopLeft;
+        }
+
         /// <summary>
         /// Draws each tile in the level.
         /// </summary>
-        private void DrawTiles(SpriteBatch spriteBatch)
+        private void DrawTiles(SpriteBatch spriteBatch, Vector2 offset)
         {
             // For each tile position
             for (int y = 0; y < Height; ++y)
@@ -620,6 +669,7 @@ namespace ThePrincessBard
                     {
                         // Draw it in screen space.
                         Vector2 position = new Vector2(x, y) * Tile.Size;
+                        position -= offset;
                         spriteBatch.Draw(texture, position, Color.White);
                     }
                 }

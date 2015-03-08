@@ -469,7 +469,7 @@ namespace ThePrincessBard.Actors
         /// <summary>
         /// Draws the animated player.
         /// </summary>
-        virtual public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        virtual public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 offset)
         {
             // Flip the sprite to face the way we are moving.
             if (Velocity.X < 0)
@@ -478,7 +478,7 @@ namespace ThePrincessBard.Actors
                 flip = SpriteEffects.None;
 
             // Draw that sprite.
-            sprite.Draw(gameTime, spriteBatch, Position, flip);
+            sprite.Draw(gameTime, spriteBatch, Position-offset, flip);
         }
     }
 }

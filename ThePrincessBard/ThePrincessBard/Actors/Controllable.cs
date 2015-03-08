@@ -157,6 +157,7 @@ namespace ThePrincessBard.Actors
                         //Leave this for that (if it's a Ghost, it'll take care of itself)
                         this.IsActive = false;
                         possessable.IsActive = true;
+                        level.Player = possessable;
                     }
                 }
             }
