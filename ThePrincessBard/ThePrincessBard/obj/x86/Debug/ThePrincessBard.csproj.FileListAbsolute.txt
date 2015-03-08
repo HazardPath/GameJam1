@@ -104,3 +104,4 @@ C:\Users\penn\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\
 C:\Users\penn\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\penn\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.exe
 C:\Users\penn\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.pdb
+C:\Users\Ben\Desktop\GameJam1\ThePrincessBard\ThePrincessBard\obj\x86\Debug\ThePrincessBard.csprojResolveAssemblyReference.cache

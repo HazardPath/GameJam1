@@ -164,7 +164,7 @@ namespace ThePrincessBard.Actors
                 int debug = 1;
             }
 
-            GetInput(keyboardState, gamePadState, orientation);
+            GetInput(keyboardState, gamePadState, orientation, gameTime);
 
             ApplyPhysics(gameTime);
 
@@ -282,7 +282,8 @@ namespace ThePrincessBard.Actors
         abstract protected void GetInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation);
+            DisplayOrientation orientation,
+            GameTime gameTime);
 
         protected bool IsAlignedLeftToClimbable()
         {

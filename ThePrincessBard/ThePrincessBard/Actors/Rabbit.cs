@@ -21,11 +21,11 @@ namespace ThePrincessBard.Actors
         {
             if (!isActive && value)
             {//wasn't active, but is now
-                //TODO spawn yourslef
+                //nothing to do here...?
             }
             else if (isActive && !value)
             {//was active, but isn't now
-                //TODO despawn yourself
+                //also nothing to do here...?
             }
 
             isActive = value;
@@ -59,9 +59,10 @@ namespace ThePrincessBard.Actors
         protected override void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation)
+            DisplayOrientation orientation,
+            GameTime gameTime)
         {
-            //TODO JUMP AROUND
+            
         }
     }
 }

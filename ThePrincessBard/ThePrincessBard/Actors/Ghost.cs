@@ -73,7 +73,8 @@ namespace ThePrincessBard.Actors
         protected override void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation)
+            DisplayOrientation orientation,
+            GameTime gameTime)
         {
             //ghost doesn't idle, it derezzes
         }

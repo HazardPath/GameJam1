@@ -38,10 +38,10 @@ namespace ThePrincessBard.Actors
         {
             // TODO: This is kinda wrong use the right thing once we have it
             // Load animated textures.
-            idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, true, 32);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_walk"), 0.1f, true, 32);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_climb1"), 0.1f, false, 32);
-            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, false, 32);
+            idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, true, 16);
+            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_walk"), 0.1f, true, 16);
+            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel_climb1"), 0.1f, false, 16);
+            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/squirrel/squiwwel"), 0.1f, false, 16);
 
             // Calculate bounds within texture size.            
             int width = (int)(idleAnimation.FrameWidth * 0.4);
@@ -59,7 +59,8 @@ namespace ThePrincessBard.Actors
         protected override void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation)
+            DisplayOrientation orientation,
+            GameTime gameTime)
         {
             //TODO JUMP AROUND
         }

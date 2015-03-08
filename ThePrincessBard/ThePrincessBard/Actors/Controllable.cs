@@ -31,18 +31,21 @@ namespace ThePrincessBard.Actors
         override protected void GetInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation)
+            DisplayOrientation orientation,
+            GameTime gameTime)
         {
             if (isActive)
-                GetRealInput(keyboardState, gamePadState, orientation);
+                GetRealInput(keyboardState, gamePadState, orientation, gameTime);
             else
-                GetIdleInput(keyboardState, gamePadState, orientation);
+                GetIdleInput(keyboardState, gamePadState, orientation, gameTime);
         }
 
         virtual protected void GetRealInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation){
+            DisplayOrientation orientation,
+            GameTime gameTime)
+        {
             // Get analog cardinal movement.
             movement.X = gamePadState.ThumbSticks.Left.X * Globals.MoveStickScale;
             movement.Y = gamePadState.ThumbSticks.Left.Y * Globals.MoveStickScale;
@@ -128,6 +131,7 @@ namespace ThePrincessBard.Actors
         protected abstract void GetIdleInput(
             KeyboardState keyboardState,
             GamePadState gamePadState,
-            DisplayOrientation orientation);
+            DisplayOrientation orientation,
+            GameTime gameTime);
     }
 }
