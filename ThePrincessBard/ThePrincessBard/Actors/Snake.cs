@@ -21,11 +21,11 @@ namespace ThePrincessBard.Actors
         {
             if (!isActive && value)
             {//wasn't active, but is now
-                //nothing to do here...?
+                //nothing to do here
             }
             else if (isActive && !value)
             {//was active, but isn't now
-                //also nothing to do here...?
+                //also nothing to do here
             }
 
             isActive = value;
