@@ -159,6 +159,11 @@ namespace ThePrincessBard.Actors
             GamePadState gamePadState,
             DisplayOrientation orientation)
         {
+            if (keyboardState.IsKeyDown(Keys.Delete))
+            {
+                int debug = 1;
+            }
+
             GetInput(keyboardState, gamePadState, orientation);
 
             ApplyPhysics(gameTime);
@@ -463,7 +468,7 @@ namespace ThePrincessBard.Actors
                             float absDepthY = Math.Abs(depth.Y);
 
                             // Resolve the collision along the shallow axis.
-                            if (absDepthY < absDepthX || collision == TileCollision.Platform)
+                            if (absDepthY <= absDepthX || collision == TileCollision.Platform)
                             {
                                 // If we crossed the top of a tile, we are on the ground.
                                 if (previousBottom <= tileBounds.Top)
