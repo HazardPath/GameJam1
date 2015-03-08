@@ -191,9 +191,13 @@ namespace ThePrincessBard
                 case 'X':
                     return LoadExitTile(x, y);
 
-                // Floating platform
+                // Tree Branch
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
+
+                // Tree Trunk
+                case '|':
+                    return LoadTile("Platform", TileCollision.Climbable);
 
                 // Platform block
                 case '~':
@@ -204,7 +208,7 @@ namespace ThePrincessBard
                     return LoadVarietyTile("BlockB", 2, TileCollision.Passable);
 
                 // Player 1 start point
-                case 'g':
+                case 'p':
                     return LoadStartTile(x, y);
                 
                 // Rabbit
@@ -230,6 +234,10 @@ namespace ThePrincessBard
                 // Impassable block
                 case '#':
                     return LoadTile("bricks", TileCollision.Impassable);
+
+                // Grass
+                case 'g':
+                    return LoadTile("grass", TileCollision.Impassable);
 
                 // slant up
                 case '/':
