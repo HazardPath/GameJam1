@@ -98,12 +98,12 @@ namespace ThePrincessBard.Actors
                 if (idleJumping)
                 {
                     idleJumping = false;
-                    timeWaiting = /*(float)rand.NextDouble() * 5f +*/ 1f;
+                    timeWaiting = (float)rand.NextDouble() * 3f + 1f;
                 }
                 else
                 {
                     idleJumping = true;
-                    timeWaiting = /*(float)rand.NextDouble() * 2f +*/ 0.1f;
+                    timeWaiting = (float)rand.NextDouble() * 1f + 0.1f;
                 }
             }
             else
