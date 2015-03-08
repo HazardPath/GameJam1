@@ -84,7 +84,7 @@ namespace ThePrincessBard
             try
             {
                 MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
+                MediaPlayer.Play(Content.Load<Song>("audio/GameMusic"));
             }
             catch { }
 
