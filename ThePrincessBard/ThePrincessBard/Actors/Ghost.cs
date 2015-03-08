@@ -54,7 +54,7 @@ namespace ThePrincessBard.Actors
             // TODO: This is kinda wrong use the right thing once we have it
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, true, 32);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, true, 32);
+            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess_walk_full"), 0.5f, true, 32);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, false, 32);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/princess/princess"), 0.1f, false, 32);
 
