@@ -110,6 +110,12 @@ namespace ThePrincessBard.Actors
         protected bool isClimbing;
         private bool wasClimbing;
 
+        public bool CanClimb
+        {
+            get { return CanClimb; }
+        }
+        protected bool canClimb = false;
+
         /// <summary>
         /// If the player is climbing a climbable surface, gets whether the surface is on the left or not
         /// </summary>
