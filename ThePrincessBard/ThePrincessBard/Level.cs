@@ -205,8 +205,13 @@ namespace ThePrincessBard
                 // Player 1 start point
                 case 'g':
                     return LoadStartTile(x, y);
-
+                
+                // Rabbit
                 case 'r':
+                    return LoadActor(tileType, x, y);
+
+                //Squirrel
+                case 's':
                     return LoadActor(tileType, x, y);
 
                 // Impassable block
@@ -278,6 +283,9 @@ namespace ThePrincessBard
             {
                 case 'r':
                     actor = new Rabbit(this, here);
+                    break;
+                case 's':
+                    actor = new Squiwwel(this, here);
                     break;
             }
 
