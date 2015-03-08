@@ -236,7 +236,7 @@ namespace ThePrincessBard
                     return LoadTile("", TileCollision.Impassable);
 
                 // slant down
-                case '\':
+                case '\\':
                     return LoadTile("", TileCollision.Impassable);
 
                 // Unknown tile type character
