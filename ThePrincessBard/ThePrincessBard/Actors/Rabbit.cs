@@ -36,10 +36,9 @@ namespace ThePrincessBard.Actors
         /// </summary>
         public override void LoadContent()
         {
-            // TODO: This is kinda wrong use the right thing once we have it
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit"), 0.1f, true, 32);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit"), 0.1f, true, 32);
+            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit_hop_full"), 0.1f, true, 32);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit_jump"), 0.1f, false, 32);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit"), 0.1f, false, 32);
 

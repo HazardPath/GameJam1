@@ -41,6 +41,7 @@ namespace ThePrincessBard
 
         private List<Gem> gems = new List<Gem>();
         private List<Actor> actors = new List<Actor>();
+        private List<Controllable> controllables = new List<Controllable>();
 
         // Key locations in the level.        
         private Vector2 start;
@@ -285,7 +286,9 @@ namespace ThePrincessBard
             switch (tileType)
             {
                 case 'r':
-                    actor = new Rabbit(this, here);
+                    Rabbit tmp = new Rabbit(this, here);
+                    actor = tmp;
+                    controllables.Add(tmp);
                     break;
                 case 'q':
                     actor = new Squiwwel(this, here);

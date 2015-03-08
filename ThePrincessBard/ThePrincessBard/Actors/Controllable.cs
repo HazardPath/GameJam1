@@ -19,7 +19,9 @@ namespace ThePrincessBard.Actors
             get { return isActive; }
             set { SetIsActive(value); }
         }
-        public bool isActive;
+        protected bool isActive;
+
+        protected bool isPossessHeld = false;
 
         protected abstract void SetIsActive(bool value);
 
@@ -123,9 +125,23 @@ namespace ThePrincessBard.Actors
             // Check if the player wants to jump.
             isJumping =
                 gamePadState.IsButtonDown(Globals.JumpButton) ||
-                keyboardState.IsKeyDown(Keys.Space) ||
-                keyboardState.IsKeyDown(Keys.Up) ||
-                keyboardState.IsKeyDown(Keys.W);
+                keyboardState.IsKeyDown(Globals.JumpKey);
+
+            // Try and possess something.
+            if (gamePadState.IsButtonDown(Globals.PossessButton) ||
+                keyboardState.IsKeyDown(Globals.PossessKey))
+            {
+                if (!isPossessHeld)
+                {
+                    isPossessHeld = true;
+                    //TODO possess code
+
+                }
+            }
+            else
+            {
+                isPossessHeld = false;
+            }
         }
 
         protected abstract void GetIdleInput(
