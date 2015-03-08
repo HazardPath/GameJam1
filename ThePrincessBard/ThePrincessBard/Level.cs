@@ -303,15 +303,19 @@ namespace ThePrincessBard
             switch (tileType)
             {
                 case 'r':
-                    Rabbit tmp = new Rabbit(this, here);
-                    actor = tmp;
-                    controllables.Add(tmp);
+                    Rabbit r = new Rabbit(this, here);
+                    controllables.Add(r);
+                    actor = r;
                     break;
                 case 'q':
-                    actor = new Squiwwel(this, here);
+                    Squiwwel q = new Squiwwel(this, here);
+                    controllables.Add(q);
+                    actor = q;
                     break;
                 case 's':
-                    actor = new Snake(this, here);
+                    Snake s = new Snake(this, here);
+                    controllables.Add(s);
+                    actor = s;
                     break;
             }
 
@@ -590,5 +594,25 @@ namespace ThePrincessBard
         }
 
         #endregion
+
+        internal Controllable GetPosessableThing(Controllable me)
+        {
+            Controllable possessable = null;
+            float distance = 999999;
+
+            foreach (Controllable cur in controllables)
+            {
+                if (cur.BoundingRectangle.Intersects(me.BoundingRectangle))
+                {
+                    float newDistance = RectangleExtensions.GetIntersectionDepth(cur.BoundingRectangle, me.BoundingRectangle).Length();
+                    if(newDistance < distance){
+                        distance = newDistance;
+                        possessable = cur;
+                    }
+                }
+            }
+
+            return possessable;
+        }
     }
 }
