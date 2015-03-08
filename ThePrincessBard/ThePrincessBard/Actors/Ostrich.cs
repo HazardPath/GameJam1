@@ -39,7 +39,7 @@ namespace ThePrincessBard.Actors
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/ostrich/ostrich"), 0.1f, true, 32);
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/ostrich/ostrich_walk_full"), 0.1f, true, 32);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/ostrich/ostrich"), 0.1f, false, 32);
+            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/ostrich/ostrich_jump_full"), 0.1f, false, 32);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/ostrich/ostrich"), 0.1f, false, 32);
 
             // Calculate bounds within texture size.            
