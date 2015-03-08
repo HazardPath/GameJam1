@@ -26,6 +26,8 @@ namespace ThePrincessBard.Actors
         protected Animation climbUpAnimationR = null;
         protected Animation climbDownAnimationL = null;
         protected Animation climbDownAnimationR = null;
+        protected Animation climbIdleAnimationL = null;
+        protected Animation climbIdleAnimationR = null;
         protected SpriteEffects flip = SpriteEffects.None;
         protected AnimationPlayer sprite;
 
@@ -38,6 +40,7 @@ namespace ThePrincessBard.Actors
         protected const float MaxMoveSpeed = 1750.0f;
         protected const float GroundDragFactor = 0.48f;
         protected const float AirDragFactor = 0.58f;
+        protected const int climbReach = 12;
 
         // Constants for controlling vertical movement
         protected const float MaxJumpTime = 0.35f;
@@ -105,6 +108,7 @@ namespace ThePrincessBard.Actors
             get { return isClimbing; }
         }
         protected bool isClimbing;
+        private bool wasClimbing;
 
         /// <summary>
         /// If the player is climbing a climbable surface, gets whether the surface is on the left or not
@@ -190,13 +194,17 @@ namespace ThePrincessBard.Actors
                     }
                     else
                     {
-                        sprite.PlayAnimation(idleAnimation);
+                        if (ClimbableLeft)
+                            sprite.PlayAnimation(climbIdleAnimationL);
+                        else
+                            sprite.PlayAnimation(climbIdleAnimationR);
                     }
                 }
             }
 
             // Clear input.
             movement = Vector2.Zero;
+            wasClimbing = isClimbing;
             isJumping = false;
         }
 
@@ -221,9 +229,20 @@ namespace ThePrincessBard.Actors
 
             // Base velocity is a combination of horizontal movement control and
             // acceleration downward due to gravity.
+            if (!isClimbing)
+            {
+                if (wasClimbing)
+                    velocity.Y = 0;
+                else
+                {
+                    velocity.Y = MathHelper.Clamp(velocity.Y + GravityAcceleration * elapsed, -MaxFallSpeed, MaxFallSpeed);
+                }
+            }
+            else
+            {
+                velocity.Y += movement.Y * MoveAcceleration * elapsed;
+            }
             velocity.X += movement.X * MoveAcceleration * elapsed;
-            velocity.Y = MathHelper.Clamp(velocity.Y + GravityAcceleration * elapsed, -MaxFallSpeed, MaxFallSpeed);
-
             velocity.Y = DoJump(velocity.Y, gameTime);
 
             // Apply pseudo-drag horizontally.
@@ -267,6 +286,8 @@ namespace ThePrincessBard.Actors
             // Ignore small movements to prevent running in place.
             if (Math.Abs(movement.X) < 0.5f)
                 movement.X = 0.0f;
+            else
+                isClimbing = false;
             if (Math.Abs(movement.Y) < 0.5f)
                 movement.Y = 0.0f;
 
@@ -276,12 +297,14 @@ namespace ThePrincessBard.Actors
                 keyboardState.IsKeyDown(Keys.A))
             {
                 movement.X = -1.0f;
+                isClimbing = false;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
                 movement.X = 1.0f;
+                isClimbing = false;
             }
 
             // If any digital vertical movement input is found, override the analog movement.
@@ -444,7 +467,22 @@ namespace ThePrincessBard.Actors
                             {
                                 // If we crossed the top of a tile, we are on the ground.
                                 if (previousBottom <= tileBounds.Top)
-                                    isOnGround = true;
+                                {
+                                    if (collision == TileCollision.Climbable)
+                                    {
+                                        if (!isClimbing && !isJumping)
+                                        {
+                                            // When walking over a ladder
+                                            isOnGround = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        isOnGround = true;
+                                        isClimbing = false;
+                                        isJumping = false;
+                                    }
+                                }
 
                                 // Ignore platforms, unless we are on the ground.
                                 if (collision == TileCollision.Impassable || IsOnGround)
@@ -462,6 +500,12 @@ namespace ThePrincessBard.Actors
                                 Position = new Vector2(Position.X + depth.X, Position.Y);
 
                                 // Perform further collisions with the new bounds.
+                                bounds = BoundingRectangle;
+                            }
+                            else if (collision == TileCollision.Climbable && !isClimbing)
+                            {
+                                Position = new Vector2(Position.X, Position.Y);
+
                                 bounds = BoundingRectangle;
                             }
                         }
