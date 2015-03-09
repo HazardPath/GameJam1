@@ -6,15 +6,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ThePrincessBard
 {
+	/// <summary>
+	/// Defines some global constants that we needed.
+	/// </summary>
     static class Globals
     {
-        static public float MoveStickScale = 1.0f;
-        static public float AccelerometerScale = 1.5f;
-        
-        static public Buttons JumpButton = Buttons.A;
-        static public Keys JumpKey = Keys.Space;
+		static public readonly float MoveStickScale = 1.0f;
+		static public readonly float AccelerometerScale = 1.5f;
 
-        static public Buttons PossessButton = Buttons.X;
-        static public Keys PossessKey = Keys.Z;
+		static public readonly Buttons JumpButton = Buttons.A;
+		static public readonly Keys JumpKey = Keys.Space;
+
+		static public readonly Buttons PossessButton = Buttons.X;
+		static public readonly Keys PossessKey = Keys.Z;
     }
 }
