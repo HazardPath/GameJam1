@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework;
 
 namespace ThePrincessBard
 {
+	// TODO: Why does this class exist? -Julia
+
     /// <summary>
     /// Represents a 2D circle.
     /// </summary>
