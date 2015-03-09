@@ -570,9 +570,10 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="audio\posession.mp4">
+    <None Include="audio\posession.mp4">
       <Name>posession</Name>
-    </Compile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="audio\posession1.mp3">
       <Name>posession1</Name>
       <Importer>Mp3Importer</Importer>
