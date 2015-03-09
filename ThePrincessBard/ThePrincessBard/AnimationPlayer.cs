@@ -72,10 +72,22 @@ namespace ThePrincessBard
             if (Animation == null)
                 throw new NotSupportedException("No animation is currently playing.");
 
-            // Process passing time.
-            time += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // Process passing time. [comment leftover from starter kit]
+
+			// I had trouble understanding this part of the code, so I wrote
+			// it out like a conversation. Maybe it will help you, too. -Julia
+
+			// "Oh! I have priority again! How long has it been, in seconds?" [gameTime.ElapsedGameTime.TotalSeconds]
+			// "Ok. So, how long have I been showing the current frame, in seconds?" [time]
+			// "Cool, so, how long was I supposed to show this frame?" [Animation.FrameTime]
+            time += (float)(gameTime.ElapsedGameTime.TotalSeconds);
+
+			// "So, have I been showing this frame long enough?"
             while (time > Animation.FrameTime)
-            {
+            { // "Yes, apparently I have."
+
+				// "In fact, I've been showing this frame too long; I better 
+				//  not show the next frame for as long as I was going to."
                 time -= Animation.FrameTime;
 
                 // Advance the frame index; looping or clamping as appropriate.
