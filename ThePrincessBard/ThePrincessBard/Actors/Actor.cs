@@ -135,19 +135,24 @@ namespace ThePrincessBard.Actors
             get
             {
                 int left = (int)Math.Round(Position.X - sprite.Origin.X) + localBounds.X;
-                int top = (int)Math.Round(Position.Y - sprite.Origin.Y) + localBounds.Y;
+                int top  = (int)Math.Round(Position.Y - sprite.Origin.Y) + localBounds.Y;
 
                 return new Rectangle(left, top, localBounds.Width, localBounds.Height);
             }
         }
 
-
+		/// <summary>
+		/// Actor is abstract, but this constructor gets used by all its children.
+		/// </summary>
+		/// <param name="level">the level on which to spawn the actor</param>
+		/// <param name="position">the position of the actor within the level</param>
         public Actor(Level level, Vector2 position)
         {
             this.level = level;
 
             LoadContent();
 
+			// Sets position, velocity, isAlive, and make its current animation be the idle.
             Reset(position);
         }
 
@@ -167,6 +172,7 @@ namespace ThePrincessBard.Actors
         {
             if (keyboardState.IsKeyDown(Keys.Delete))
             {
+				// TODO: is this ever intended for use, or just leftover from starter kit?
                 int debug = 1;
             }
 
