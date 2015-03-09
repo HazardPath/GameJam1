@@ -26,19 +26,32 @@ namespace ThePrincessBard
     /// </summary>
     class Level : IDisposable
     {
-        // Physical structure of the level.
+        /// <summary>
+        /// Physical structure of the level.
+        /// </summary>
         private Tile[,] tiles;
+		/// <summary>
+		/// Background layers?
+		/// </summary>
         private Texture2D[] layers;
-        // The layer which entities are drawn on top of.
-        private const int EntityLayer = 2;
+        /// <summary>
+        /// The layer which entities are drawn on top of.
+        /// </summary>
+		private const int EntityLayer = 2;
+		/// <summary>
+		/// The player character. 
+		/// </summary>
+		private Controllable player;
 
-        // Entities in the level.
+
+        /// <summary>
+        /// Getter and Setter for player.
+        /// </summary>
         public Controllable Player
         {
             get { return player; }
             set { player = value; }
         }
-        Controllable player;
 
         public List<Gem> gems = new List<Gem>();
         public List<Actor> actors = new List<Actor>();
@@ -51,12 +64,6 @@ namespace ThePrincessBard
 
         // Level game state.
         private Random random = new Random();
-
-        public int Score
-        {
-            get { return score; }
-        }
-        int score;
 
         public bool ReachedExit
         {
@@ -83,6 +90,12 @@ namespace ThePrincessBard
 
         #region Loading
 
+		public Level MakeXmlLevel(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
+		{
+			System.Xml.Serialization.XmlSerializer xmlLevelReader = new System.Xml.Serialization.XmlSerializer(typeof(Level));
+			return (Level)xmlLevelReader.Deserialize(fileStream);
+		}
+
         /// <summary>
         /// Constructs a new level.
         /// </summary>
@@ -94,18 +107,19 @@ namespace ThePrincessBard
         /// </param>
         public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
         {
-            // Create a new content manager to load content used just by this level.
-            content = new ContentManager(serviceProvider, "Content");
+			// Create a new content manager to load content used just by this level.
+			content = new ContentManager(serviceProvider, "Content");
 
-            timeRemaining = TimeSpan.FromMinutes(2.0);
+			// TODO: you know that "freezing" problem we sometimes had? I bet you anything it's caused by this time limit thing. -Julia
+			timeRemaining = TimeSpan.FromMinutes(2.0);
 
             LoadTiles(fileStream);
 
-            // Load background layer textures. For now, all levels must
-            // use the same backgrounds and only use the left-most part of them.
-            //TODO this right
-            //layers = new Texture2D[3];
-            //for (int i = 0; i < layers.Length; ++i)
+			// Load background layer textures. For now, all levels must
+			// use the same backgrounds and only use the left-most part of them.
+			//TODO this right
+			//layers = new Texture2D[3];
+			//for (int i = 0; i < layers.Length; ++i)
             //{
                 // Choose a random segment if each background layer for level variety.
             //    int segmentIndex = levelIndex;
@@ -455,7 +469,6 @@ namespace ThePrincessBard
                 int seconds = (int)Math.Round(gameTime.ElapsedGameTime.TotalSeconds * 100.0f);
                 seconds = Math.Min(seconds, (int)Math.Ceiling(TimeRemaining.TotalSeconds));
                 timeRemaining -= TimeSpan.FromSeconds(seconds);
-                score += seconds * PointsPerSecond;
             }
             else
             {
@@ -545,8 +558,6 @@ namespace ThePrincessBard
         /// <param name="collectedBy">The player who collected this gem.</param>
         private void OnGemCollected(Gem gem, Controllable collectedBy)
         {
-            score += Gem.PointValue;
-
             gem.OnCollected(collectedBy);
         }
 
