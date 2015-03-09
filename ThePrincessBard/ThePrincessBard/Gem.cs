@@ -17,6 +17,7 @@ namespace ThePrincessBard
 {
     /// <summary>
     /// A valuable item the player can collect.
+	/// Leftover, currently usused remnant of the starter kit we used.
     /// </summary>
     class Gem
     {
