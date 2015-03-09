@@ -16,3 +16,5 @@ ThePrincessBard/ThePrincessBard/bin/x86/Debug/ThePrincessBard.exe.manifest
 *.manifest
 ThePrincessBard/ThePrincessBard/obj/x86/Debug/Microsoft.Xna.Framework.RuntimeProfile.txt
 *.application
+ThePrincessBard/ThePrincessBardContent/Levels/XMLtest.txt
+ThePrincessBard/ThePrincessBardContent/Levels/XMLtest.xml
