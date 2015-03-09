@@ -9,3 +9,10 @@ ThePrincessBard/ThePrincessBard/obj/x86/Debug/ThePrincessBard.csproj.FileListAbs
 *.cachefile
 ThePrincessBard/ThePrincessBardContent/obj/x86/Debug/ContentPipeline.xml
 *.contentproj
+ThePrincessBard/ThePrincessBard/bin/x86/Debug/Content/Levels/0.txt
+ThePrincessBard/ThePrincessBard/bin/x86/Debug/Content/Levels/1.txt
+ThePrincessBard/ThePrincessBard/bin/x86/Debug/Content/Levels/2.txt
+ThePrincessBard/ThePrincessBard/bin/x86/Debug/ThePrincessBard.exe.manifest
+*.manifest
+ThePrincessBard/ThePrincessBard/obj/x86/Debug/Microsoft.Xna.Framework.RuntimeProfile.txt
+*.application
