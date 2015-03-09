@@ -92,7 +92,7 @@ namespace ThePrincessBard
         }
 
         /// <summary>
-        /// Constructors a new animation.
+        /// Constructs a new animation.
         /// New constructor; can take rectangular frames
         /// </summary>        
         public Animation(Texture2D texture, float frameTime, bool isLooping, int frameWidth)
@@ -105,7 +105,7 @@ namespace ThePrincessBard
         }
 
         /// <summary>
-        /// Constructors a new animation.
+        /// Constructs a new animation.
         /// Old constructor; assumes square frames.
         /// </summary>        
         public Animation(Texture2D texture, float frameTime, bool isLooping)
