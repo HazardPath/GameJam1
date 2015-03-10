@@ -547,7 +547,7 @@ namespace ThePrincessBard
             GamePadState gamePadState,
             DisplayOrientation orientation)
         {
-            // Pause while the player is dead or game has been won.
+            // Pause while the player is dead or level has been won.
 			if (!Player.IsAlive || ReachedExit)
             {
                 // Still want to perform physics on the player.
@@ -555,20 +555,23 @@ namespace ThePrincessBard
             }
             else
             {
-				// Force game to run the kiwi-specific Update function if needed.
-				if (Player is Kiwi)
-				{
-					((Kiwi)Player).Update(gameTime, keyboardState, gamePadState, orientation);
-				}
-				else
-				{
-					Player.Update(gameTime, keyboardState, gamePadState, orientation);
-				}
+				// Player Update
+
+				if (Player is Kiwi) { // Kiwi-specific Player Update
+					((Kiwi)Player).Update(gameTime, keyboardState, gamePadState, orientation); }
+				else {
+					Player.Update(gameTime, keyboardState, gamePadState, orientation); }
+
+				// Gems Update
+
                 UpdateGems(gameTime);
 
+				// TODO: Why is this not in the actor update function? 
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)
                     OnPlayerKilled(null);
+
+				// Actors Update
 
                 UpdateActors(gameTime, keyboardState, gamePadState, orientation);
 
