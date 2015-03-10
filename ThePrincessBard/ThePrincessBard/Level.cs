@@ -26,6 +26,12 @@ namespace ThePrincessBard
     /// </summary>
     class Level : IDisposable
     {
+		//###################################################################//
+		//																	 //
+		//                       VARIABLES & CONSTANTS                       //
+		//																	 //
+		//###################################################################//
+
         /// <summary>
         /// Physical structure of the level.
         /// </summary>
@@ -42,7 +48,45 @@ namespace ThePrincessBard
 		/// The player character. 
 		/// </summary>
 		private Controllable player;
+		/// <summary>
+		/// Temporary storage for an actor that's been possessed; a possessed
+		/// actor is temporarily removed from the list of possessable actors,
+		/// and will need to be added back to the list at a later time.
+		/// </summary>
+		private Actor addMeLater = null;
+		/// <summary>
+		/// List of all the gems in the level. Currently usused, but could be
+		/// handy for some kind of hidden item or something.
+		/// </summary>
+        private List<Gem> gems = new List<Gem>();
+		/// <summary>
+		/// The list of all actors on the level, including those that cannot
+		/// be possessed. Though we currently don't have any of those.
+		/// </summary>
+		private List<Actor> actors = new List<Actor>();
+		/// <summary>
+		/// List of all actors that can be possessed in the level.
+		/// </summary>
+		private List<Controllable> controllables = new List<Controllable>();
+		/// <summary>
+		/// The initial position of the ghost princess within the level.
+		/// </summary>
+        private Vector2 start;
+		/// <summary>
+		/// The location in the level that you need to get to in order to win.
+		/// </summary>
+        private Point exit = InvalidPosition;
+		/// <summary>
+		/// A dummy location used as the initial value of Level.exit in order
+		/// to verify whether Level.exit has been initialized yet.
+		/// </summary>
+        private static readonly Point InvalidPosition = new Point(-1, -1);
 
+		//###################################################################//
+		//																	 //
+		//                         GETTERS & SETTERS                         //
+		//																	 //
+		//###################################################################//
 
         /// <summary>
         /// Getter and Setter for player.
@@ -52,15 +96,30 @@ namespace ThePrincessBard
             get { return player; }
             set { player = value; }
         }
-
-        public List<Gem> gems = new List<Gem>();
-        public List<Actor> actors = new List<Actor>();
-        public List<Controllable> controllables = new List<Controllable>();
-
-        // Key locations in the level.        
-        private Vector2 start;
-        private Point exit = InvalidPosition;
-        private static readonly Point InvalidPosition = new Point(-1, -1);
+		/// <summary>
+		/// Getter and setter for addMeLater.
+		/// </summary>
+		public Actor AddMeLater
+		{
+			get { return addMeLater; }
+			set { addMeLater = value; }
+		}
+		/// <summary>
+		/// Getter and setter for actors.
+		/// </summary>
+		public List<Actor> Actors
+		{
+			get { return actors; }
+			set { actors = value; }
+		}
+		/// <summary>
+		/// Getter and setter for controllables.
+		/// </summary>
+		public List<Controllable> Controllables
+		{
+			get { return controllables; }
+			set { controllables = value; }
+		}
 
         // Level game state.
         private Random random = new Random();
@@ -69,15 +128,10 @@ namespace ThePrincessBard
         {
             get { return reachedExit; }
         }
+		/// <summary>
+		/// Indicates whether or not the player has made it to the exit yet.
+		/// </summary>
         bool reachedExit;
-
-        public TimeSpan TimeRemaining
-        {
-            get { return timeRemaining; }
-        }
-        TimeSpan timeRemaining;
-
-        private const int PointsPerSecond = 5;
 
         // Level content.        
         public ContentManager Content
@@ -109,9 +163,6 @@ namespace ThePrincessBard
         {
 			// Create a new content manager to load content used just by this level.
 			content = new ContentManager(serviceProvider, "Content");
-
-			// TODO: you know that "freezing" problem we sometimes had? I bet you anything it's caused by this time limit thing. -Julia
-			timeRemaining = TimeSpan.FromMinutes(2.0);
 
             LoadTiles(fileStream);
 
@@ -370,8 +421,12 @@ namespace ThePrincessBard
         /// </summary>
         private Tile LoadExitTile(int x, int y)
         {
-            if (exit != InvalidPosition)
-                throw new NotSupportedException("A level may only have one exit.");
+			// If the exit has already been set, throw an exception.
+			if (exit != InvalidPosition)
+			{
+				// TODO: We had actually talked about allowing multiple exits; can we change this?
+				throw new NotSupportedException("A level may only have one exit.");
+			}
 
             exit = GetBounds(x, y).Center;
 
@@ -457,26 +512,23 @@ namespace ThePrincessBard
             GamePadState gamePadState,
             DisplayOrientation orientation)
         {
-            // Pause while the player is dead or time is expired.
-            if (!Player.IsAlive || TimeRemaining == TimeSpan.Zero)
+            // Pause while the player is dead.
+			if (!Player.IsAlive || ReachedExit)
             {
                 // Still want to perform physics on the player.
                 Player.ApplyPhysics(gameTime);
             }
-            else if (ReachedExit)
-            {
-                // Animate the time being converted into points.
-                int seconds = (int)Math.Round(gameTime.ElapsedGameTime.TotalSeconds * 100.0f);
-                seconds = Math.Min(seconds, (int)Math.Ceiling(TimeRemaining.TotalSeconds));
-                timeRemaining -= TimeSpan.FromSeconds(seconds);
-            }
             else
             {
-                timeRemaining -= gameTime.ElapsedGameTime;
-                if (Player is Kiwi)
-                    ((Kiwi)Player).Update(gameTime, keyboardState, gamePadState, orientation);
-                else
-                    Player.Update(gameTime, keyboardState, gamePadState, orientation);
+				// Force game to run the kiwi-specific Update function if needed.
+				if (Player is Kiwi)
+				{
+					((Kiwi)Player).Update(gameTime, keyboardState, gamePadState, orientation);
+				}
+				else
+				{
+					Player.Update(gameTime, keyboardState, gamePadState, orientation);
+				}
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.
@@ -486,19 +538,13 @@ namespace ThePrincessBard
                 UpdateActors(gameTime, keyboardState, gamePadState, orientation);
 
                 // The player has reached the exit if they are standing on the ground and
-                // his bounding rectangle contains the center of the exit tile. They can only
-                // exit when they have collected all of the gems.
+                // his bounding rectangle contains the center of the exit tile.
+				// TODO: can we remove the requirement that the player be on the ground to win?
                 if (Player.IsAlive &&
                     Player.IsOnGround &&
                     Player.BoundingRectangle.Contains(exit))
-                {
-                    OnExitReached();
-                }
+                { OnExitReached(); }
             }
-
-            // Clamp the time remaining at zero.
-            if (timeRemaining < TimeSpan.Zero)
-                timeRemaining = TimeSpan.Zero;
         }
 
         /// <summary>
@@ -520,8 +566,6 @@ namespace ThePrincessBard
             }
         }
 
-        public Actor addMeLater = null;
-
         /// <summary>
         /// Animates each enemy and allow them to kill the player.
         /// </summary>
@@ -539,8 +583,7 @@ namespace ThePrincessBard
                 if (actor.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
                     bool isFatal = actor.HitPlayer(player);
-                    if(isFatal)
-                        OnPlayerKilled(actor);
+					if (isFatal) { OnPlayerKilled(actor); }
                 }
             }
 
@@ -575,10 +618,12 @@ namespace ThePrincessBard
 
         /// <summary>
         /// Called when the player reaches the level's exit.
+		/// We are still using this method.
         /// </summary>
         private void OnExitReached()
         {
             Player.OnReachedExit();
+			// TODO: Add exit sound.
             //exitReachedSound.Play();
             reachedExit = true;
         }
@@ -691,9 +736,17 @@ namespace ThePrincessBard
 
         #endregion
 
+		/// <summary>
+		/// Search for a possessable actor near the player that is not the
+		/// player herself.
+		/// </summary>
+		/// <param name="me">the ghost player character</param>
+		/// <returns>the closest possessable actor, if there is one; if there isn't, returns null</returns>
         internal Controllable GetPosessableThing(Controllable me)
         {
+			// current closest possessable thing
             Controllable possessable = null;
+			// distance to the current closest possessable thing
             float distance = 999999;
 
             foreach (Controllable cur in controllables)

@@ -46,8 +46,8 @@ namespace ThePrincessBard.Actors
             }
 			else if (isActive && !value)
 			{ // was active, but isn't now
-				level.controllables.Remove(this);
-				level.actors.Remove(this);
+				level.Controllables.Remove(this);
+				level.Actors.Remove(this);
 			}
 			else
 			{ // either already active and still is, or inactive and still is

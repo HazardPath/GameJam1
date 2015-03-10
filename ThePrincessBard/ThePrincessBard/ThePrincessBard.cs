@@ -24,8 +24,17 @@ namespace ThePrincessBard
         // Global content.
         private SpriteFont hudFont;
 
+		/// <summary>
+		/// Image to display when the player wins a level.
+		/// </summary>
         private Texture2D winOverlay;
+		/// <summary>
+		/// Image to display when the player loses a level.
+		/// </summary>
         private Texture2D loseOverlay;
+		/// <summary>
+		/// Image to display when the player dies.
+		/// </summary>
         private Texture2D diedOverlay;
 
         // Meta-level game state.
@@ -47,6 +56,11 @@ namespace ThePrincessBard
         // or handle exceptions, both of which can add unnecessary time to level loading.
         private const int numberOfLevels = 3;
 
+		/// <summary>
+		/// Constructor for the main class of the game.
+		/// Instantiates the GraphicsDeviceManager and defines
+		/// the content root directory.
+		/// </summary>
         public ThePrincessBard()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -56,7 +70,7 @@ namespace ThePrincessBard
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
+        /// related content. Calling base. Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
@@ -118,14 +132,15 @@ namespace ThePrincessBard
 
         private void HandleInput()
         {
-            // get all of our input states
+            // Get keyboard and/or gamepad input states.
             keyboardState = Keyboard.GetState();
-            gamePadState = GamePad.GetState(PlayerIndex.One);
+            gamePadState  = GamePad.GetState(PlayerIndex.One);
 
             // Exit the game when back is pressed.
-            if (gamePadState.Buttons.Back == ButtonState.Pressed)
-                Exit();
+			if (gamePadState.Buttons.Back == ButtonState.Pressed) { Exit(); }
 
+			// TODO: this is where the 'continue' button is defined.
+			// Define continue button to progess to next level.
             bool continuePressed =
                 keyboardState.IsKeyDown(Keys.Space) ||
                 gamePadState.IsButtonDown(Buttons.A);
@@ -134,37 +149,43 @@ namespace ThePrincessBard
             // to get the player back to playing.
             if (!wasContinuePressed && continuePressed)
             {
-                if (!level.Player.IsAlive)
-                {
-                    level.StartNewLife();
-                }
-                else if (level.TimeRemaining == TimeSpan.Zero)
-                {
-                    if (level.ReachedExit)
-                        LoadNextLevel();
-                    else
-                        ReloadCurrentLevel();
-                }
+				/**/ if (!level.Player.IsAlive) { level.StartNewLife(); }
+				else if ( level.ReachedExit   ) { LoadNextLevel(); }
             }
 
+			// This is to make sure you don't accidentally auto-progress
+			// before you're ready because you were holding the continue
+			// button when you approached the exit.
             wasContinuePressed = continuePressed;
         }
 
+		/// <summary>
+		/// Loads the next game level.
+		/// </summary>
+		/// <remarks>
+		/// Modifies ThePrincessBard.levelIndex and ThePrincessBard.level.
+		/// </remarks>
         private void LoadNextLevel()
         {
             // move to the next level
             levelIndex = (levelIndex + 1) % numberOfLevels;
 
             // Unloads the content for the current level before loading the next one.
-            if (level != null)
-                level.Dispose();
+			if (level != null) { level.Dispose(); }
 
             // Load the level.
+			// TODO: This is where level files are found and loaded.
             string levelPath = string.Format("Content/Levels/{0}.txt", levelIndex);
-            using (Stream fileStream = TitleContainer.OpenStream(levelPath))
-                level = new Level(Services, fileStream, levelIndex);
+			using (Stream fileStream = TitleContainer.OpenStream(levelPath))
+				level = new Level(Services, fileStream, levelIndex);
         }
 
+		/// <summary>
+		/// Reloads the current level of the game.
+		/// </summary>
+		/// <remarks>
+		/// Modifies ThePrincessBard.levelIndex and calls LoadNextLevel().
+		/// </remarks>
         private void ReloadCurrentLevel()
         {
             --levelIndex;
@@ -177,17 +198,20 @@ namespace ThePrincessBard
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+			// This makes our background "sky" be blue.
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+			// Has the SpriteBatch start doing things.
             spriteBatch.Begin();
 
+			// Defined in Level.cs; this is the main draw method.
             level.Draw(gameTime, spriteBatch);
 
+			// Necessary cleanup for the SpriteBatch class.
             spriteBatch.End();
 
+			// The 'base' in question is Microsoft.Xna.Framework.Game.
             base.Draw(gameTime);
         }
-
-        
     }
 }
