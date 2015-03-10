@@ -539,9 +539,8 @@ namespace ThePrincessBard
 
                 // The player has reached the exit if they are standing on the ground and
                 // his bounding rectangle contains the center of the exit tile.
-				// TODO: can we remove the requirement that the player be on the ground to win?
+				// TODO: I removed the requirement that the player be on the ground to win.
                 if (Player.IsAlive &&
-                    Player.IsOnGround &&
                     Player.BoundingRectangle.Contains(exit))
                 { OnExitReached(); }
             }
