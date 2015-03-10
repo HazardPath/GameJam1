@@ -32,18 +32,20 @@ namespace ThePrincessBard
 		//																	 //
 		//###################################################################//
 
+		/// <summary>
+		/// The ContentManager handles loading all the assets for the level.
+		/// This is so you can dispose of the ContentManager at the end of the
+		/// level, and all the assets will be cleaned up automatically.
+		/// </summary>
+        ContentManager content;
         /// <summary>
         /// Physical structure of the level.
         /// </summary>
         private Tile[,] tiles;
 		/// <summary>
-		/// Background layers?
+		/// Background layers. Currently unused.
 		/// </summary>
         private Texture2D[] layers;
-        /// <summary>
-        /// The layer which entities are drawn on top of.
-        /// </summary>
-		private const int EntityLayer = 2;
 		/// <summary>
 		/// The player character. 
 		/// </summary>
@@ -77,10 +79,28 @@ namespace ThePrincessBard
 		/// </summary>
         private Point exit = InvalidPosition;
 		/// <summary>
+		/// Indicates whether or not the player has made it to the exit yet.
+		/// </summary>
+        bool reachedExit;
+		/// <summary>
+		/// This will eventually be used to store and play a unique sound
+		/// effect at the end of each level. Currently unused.
+		/// </summary>
+        private SoundEffect exitReachedSound;
+        /// <summary>
+        /// The layer which entities are drawn on top of. Currently unused.
+        /// </summary>
+		private static readonly int EntityLayer = 2;
+		/// <summary>
 		/// A dummy location used as the initial value of Level.exit in order
 		/// to verify whether Level.exit has been initialized yet.
 		/// </summary>
         private static readonly Point InvalidPosition = new Point(-1, -1);
+        /// <summary>
+        /// A random number generator used to pick a random appearance for
+		/// tiles with variants.
+        /// </summary>
+        private static readonly Random random = new Random();
 
 		//###################################################################//
 		//																	 //
@@ -120,30 +140,44 @@ namespace ThePrincessBard
 			get { return controllables; }
 			set { controllables = value; }
 		}
-
-        // Level game state.
-        private Random random = new Random();
-
+		/// <summary>
+		/// Getter and Setter for reachedExit.
+		/// </summary>
         public bool ReachedExit
         {
             get { return reachedExit; }
         }
 		/// <summary>
-		/// Indicates whether or not the player has made it to the exit yet.
+		/// Getter and setter for content.
 		/// </summary>
-        bool reachedExit;
-
-        // Level content.        
         public ContentManager Content
         {
             get { return content; }
         }
-        ContentManager content;
-
-        private SoundEffect exitReachedSound;
+		/// <summary>
+		/// Width of level measured in tiles.
+		/// </summary>
+		public int Width
+		{
+			get { return tiles.GetLength(0); }
+		}
+		/// <summary>
+		/// Height of the level measured in tiles.
+		/// </summary>
+		public int Height
+		{
+			get { return tiles.GetLength(1); }
+		}
 
         #region Loading
 
+		/// <summary>
+		/// WIP: generate a level from xml.
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="fileStream">the xml file</param>
+		/// <param name="levelIndex">the level number</param>
+		/// <returns>a new Level constructed from an xml file</returns>
 		public Level MakeXmlLevel(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
 		{
 			System.Xml.Serialization.XmlSerializer xmlLevelReader = new System.Xml.Serialization.XmlSerializer(typeof(Level));
@@ -158,25 +192,28 @@ namespace ThePrincessBard
         /// </param>
         /// <param name="fileStream">
         /// A stream containing the tile data.
-        /// </param>
+		/// </param>
+		/// <param name="levelIndex">the level number</param>
         public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
         {
 			// Create a new content manager to load content used just by this level.
 			content = new ContentManager(serviceProvider, "Content");
 
+			// Loads in the the tiles from 
             LoadTiles(fileStream);
 
+			// TODO: Load background textures properly.
 			// Load background layer textures. For now, all levels must
 			// use the same backgrounds and only use the left-most part of them.
-			//TODO this right
 			//layers = new Texture2D[3];
 			//for (int i = 0; i < layers.Length; ++i)
-            //{
-                // Choose a random segment if each background layer for level variety.
-            //    int segmentIndex = levelIndex;
-            //    layers[i] = Content.Load<Texture2D>("Backgrounds/Layer" + i + "_" + segmentIndex);
-            //}
+			//{
+				// Choose a random segment if each background layer for level variety.
+				//int segmentIndex = levelIndex;
+				//layers[i] = Content.Load<Texture2D>("Backgrounds/Layer" + i + "_" + segmentIndex);
+			//}
 
+			// TODO: Load level exit sound here, when it exists.
             // Load sounds.
             //exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
         }
@@ -334,7 +371,6 @@ namespace ThePrincessBard
             return new Tile(Content.Load<Texture2D>("Graphics/tiles/" + name), collision);
         }
 
-
         /// <summary>
         /// Loads a tile with a random appearance.
         /// </summary>
@@ -351,14 +387,19 @@ namespace ThePrincessBard
             return LoadTile(baseName + index, collision);
         }
 
-
         /// <summary>
-        /// Instantiates a player, puts her in the level, and remembers where to put her when she is resurrected.
-        /// </summary>
+        /// Instantiates a player, puts her in the level, and remembers where
+		/// to put her when she is resurrected.
+		/// </summary>
+		/// <param name="x">the x coordinate of the player</param>
+		/// <param name="y">the y coordinate of the player</param>
+		/// <returns>an empty, passable tile</returns>
         private Tile LoadStartTile(int x, int y)
         {
-            if (Player != null)
-                throw new NotSupportedException("A level may only have one starting point.");
+			if (Player != null)
+			{
+				throw new NotSupportedException("A level may only have one starting point.");
+			}
 
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             player = new Ghost(this, start);
@@ -369,6 +410,13 @@ namespace ThePrincessBard
             return new Tile(null, TileCollision.Passable);
         }
 
+		/// <summary>
+		/// Instantiates an animal and puts it in the level.
+		/// </summary>
+		/// <param name="tileType">the type of animal to create</param>
+		/// <param name="x">the x coordinate of the animal</param>
+		/// <param name="y">the y coordinate of the animal</param>
+		/// <returns>an empty, passable tile</returns>
         private Tile LoadActor(char tileType, int x, int y)
         {
             Vector2 here = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
@@ -436,6 +484,9 @@ namespace ThePrincessBard
         /// <summary>
         /// Instantiates a gem and puts it in the level.
         /// </summary>
+		/// <remarks>
+		/// Currently unused; leftover from starter kit. May be useful later.
+		/// </remarks>
         private Tile LoadGemTile(int x, int y)
         {
             Point position = GetBounds(x, y).Center;
@@ -445,7 +496,7 @@ namespace ThePrincessBard
         }
 
         /// <summary>
-        /// Unloads the level content.
+        /// Unloads the level content. Has the ContentManager do it.
         /// </summary>
         public void Dispose()
         {
@@ -465,37 +516,21 @@ namespace ThePrincessBard
         public TileCollision GetCollision(int x, int y)
         {
             // Prevent escaping past the level ends.
-            if (x < 0 || x >= Width)
-                return TileCollision.Impassable;
+			if (x < 0 || x >= Width) { return TileCollision.Impassable; }
             // Allow jumping past the level top and falling through the bottom.
-            if (y < 0 || y >= Height)
-                return TileCollision.Passable;
-
+			if (y < 0 || y >= Height) { return TileCollision.Passable; }
+			// Otherwise, use the collision of the tile at the given location.
             return tiles[x, y].Collision;
         }
 
         /// <summary>
         /// Gets the bounding rectangle of a tile in world space.
-        /// </summary>        
+        /// </summary>
+		/// <param name="x">the x coordinate of the tile</param>
+		/// <param name="x">the y coordinate of the tile</param>
         public Rectangle GetBounds(int x, int y)
         {
             return new Rectangle(x * Tile.Width, y * Tile.Height, Tile.Width, Tile.Height);
-        }
-
-        /// <summary>
-        /// Width of level measured in tiles.
-        /// </summary>
-        public int Width
-        {
-            get { return tiles.GetLength(0); }
-        }
-
-        /// <summary>
-        /// Height of the level measured in tiles.
-        /// </summary>
-        public int Height
-        {
-            get { return tiles.GetLength(1); }
         }
 
         #endregion
@@ -512,7 +547,7 @@ namespace ThePrincessBard
             GamePadState gamePadState,
             DisplayOrientation orientation)
         {
-            // Pause while the player is dead.
+            // Pause while the player is dead or game has been won.
 			if (!Player.IsAlive || ReachedExit)
             {
                 // Still want to perform physics on the player.
@@ -537,11 +572,10 @@ namespace ThePrincessBard
 
                 UpdateActors(gameTime, keyboardState, gamePadState, orientation);
 
-                // The player has reached the exit if they are standing on the ground and
-                // his bounding rectangle contains the center of the exit tile.
+                // The player has reached the exit if their bounding rectangle
+				// contains the center of the exit tile.
 				// TODO: I removed the requirement that the player be on the ground to win.
-                if (Player.IsAlive &&
-                    Player.BoundingRectangle.Contains(exit))
+                if (Player.IsAlive && Player.BoundingRectangle.Contains(exit))
                 { OnExitReached(); }
             }
         }
