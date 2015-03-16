@@ -87,6 +87,10 @@ namespace ThePrincessBard
 		/// effect at the end of each level. Currently unused.
 		/// </summary>
         private SoundEffect exitReachedSound;
+		/// <summary>
+		/// Previous position of camera; used for some camera movement math.
+		/// </summary>
+		private Vector2 oldCameraOffset = Vector2.Zero;
         /// <summary>
         /// The layer which entities are drawn on top of. Currently unused.
         /// </summary>
@@ -169,20 +173,13 @@ namespace ThePrincessBard
 			get { return tiles.GetLength(1); }
 		}
 
-        #region Loading
+		//###################################################################//
+		//																	 //
+		//                          OTHER FUNCTIONS                          //
+		//																	 //
+		//###################################################################//
 
-		/// <summary>
-		/// WIP: generate a level from xml.
-		/// </summary>
-		/// <param name="serviceProvider"></param>
-		/// <param name="fileStream">the xml file</param>
-		/// <param name="levelIndex">the level number</param>
-		/// <returns>a new Level constructed from an xml file</returns>
-		public Level MakeXmlLevel(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
-		{
-			System.Xml.Serialization.XmlSerializer xmlLevelReader = new System.Xml.Serialization.XmlSerializer(typeof(Level));
-			return (Level)xmlLevelReader.Deserialize(fileStream);
-		}
+        #region Loading
 
         /// <summary>
         /// Constructs a new level.
@@ -217,6 +214,74 @@ namespace ThePrincessBard
             // Load sounds.
             //exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
         }
+
+		/// <summary>
+		/// Constructor for a level made with an xml file.
+		/// </summary>
+		/// <param name="serviceProvider">I dunno</param>
+		/// <param name="xmlLevel">the intermediate class</param>
+		/// <param name="levelIndex">level number</param>
+		public Level(IServiceProvider serviceProvider, LevelXmlIntermidiate xmlLevel, int levelIndex)
+		{
+			// Create a new content manager to load content used just by this level.
+			content = new ContentManager(serviceProvider, "Content");
+			this.tiles = new Tile[xmlLevel.Width, xmlLevel.Height];
+
+			// Make all tiles into sky.
+			for (int tempX = 0; tempX < xmlLevel.Width; tempX++)
+			{
+				for (int tempY = 0; tempY < xmlLevel.Height; tempY++)
+				{
+					this.tiles[tempX, tempY] = new Tile(null, TileCollision.Passable);
+				}
+			}
+
+			// Overwrite them with tiles from the blocks.
+			foreach (TileBlock block in xmlLevel.TileBlocks)
+			{
+				for (int tempX = block.StartX; tempX <= block.FinalX; tempX++)
+				{
+					for (int tempY = block.StartY; tempY <= block.FinalY; tempY++)
+					{
+						this.tiles[tempX, tempY] = LookupTile(block.TileType);
+					}
+				}
+			}
+
+			// Overwrite more with tiles from the clumps.
+			foreach (TileClump clump in xmlLevel.TileClumps)
+			{
+				foreach (List<int> coordPair in clump.Coords)
+				{
+					this.tiles[coordPair[0], coordPair[1]] = LookupTile(clump.TileType);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Identifies tiles based on strings.
+		/// </summary>
+		/// <param name="name">the name of the tile to be identified</param>
+		/// <returns>a new Tile instance</returns>
+		private Tile LookupTile(string name)
+		{
+			/**/ if (name == "grass")
+			{
+				return LoadTile("grass/grass_mid_top", TileCollision.Impassable);
+			}
+			else if (name == "dirt")
+			{
+				return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
+			}
+			else if (name == "bricks")
+			{
+				return LoadTile("bricks/bricks", TileCollision.Impassable);
+			}
+			else
+			{
+				throw new NotSupportedException(String.Format("Unsupported tile type \"{0}\".", name));
+			}
+		}
 
         /// <summary>
         /// Iterates over every tile in the structure file and loads its
@@ -410,6 +475,23 @@ namespace ThePrincessBard
             return new Tile(null, TileCollision.Passable);
         }
 
+        /// <summary>
+        /// Remembers the location of the level's exit.
+        /// </summary>
+        private Tile LoadExitTile(int x, int y)
+        {
+			// If the exit has already been set, throw an exception.
+			if (exit != InvalidPosition)
+			{
+				// TODO: We had actually talked about allowing multiple exits; can we change this?
+				throw new NotSupportedException("A level may only have one exit.");
+			}
+
+            exit = GetBounds(x, y).Center;
+
+            return LoadTile("exit", TileCollision.Passable);
+        }
+
 		/// <summary>
 		/// Instantiates an animal and puts it in the level.
 		/// </summary>
@@ -462,23 +544,6 @@ namespace ThePrincessBard
             actors.Add(actor);
 
             return new Tile(null, TileCollision.Passable);
-        }
-
-        /// <summary>
-        /// Remembers the location of the level's exit.
-        /// </summary>
-        private Tile LoadExitTile(int x, int y)
-        {
-			// If the exit has already been set, throw an exception.
-			if (exit != InvalidPosition)
-			{
-				// TODO: We had actually talked about allowing multiple exits; can we change this?
-				throw new NotSupportedException("A level may only have one exit.");
-			}
-
-            exit = GetBounds(x, y).Center;
-
-            return LoadTile("exit", TileCollision.Passable);
         }
 
         /// <summary>
@@ -701,8 +766,11 @@ namespace ThePrincessBard
                 //spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
         }
 
-        private Vector2 oldCameraOffset = Vector2.Zero;
-
+		/// <summary>
+		/// Move the camera around with the player.
+		/// </summary>
+		/// <param name="view">the game window</param>
+		/// <returns>new position of the camera</returns>
         private Vector2 GetCameraOffset(Viewport view)
         {
             Vector2 screenSize = new Vector2(view.Width, view.Height);
@@ -776,7 +844,7 @@ namespace ThePrincessBard
 		/// Search for a possessable actor near the player that is not the
 		/// player herself.
 		/// </summary>
-		/// <param name="me">the ghost player character</param>
+		/// <param name="me">whatever the player is currently controlling</param>
 		/// <returns>the closest possessable actor, if there is one; if there isn't, returns null</returns>
         internal Controllable GetPosessableThing(Controllable me)
         {

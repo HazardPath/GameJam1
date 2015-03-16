@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace ThePrincessBard
 {
@@ -23,6 +24,8 @@ namespace ThePrincessBard
         
         // Global content.
         private SpriteFont hudFont;
+
+		private XmlSerializer xmlLevelReader;
 
 		/// <summary>
 		/// Image to display when the player wins a level.
@@ -39,21 +42,29 @@ namespace ThePrincessBard
 
         // Meta-level game state.
         private int levelIndex = -1;
+		/// <summary>
+		/// The current level of the game.
+		/// </summary>
         private Level level;
+		/// <summary>
+		/// Whether or not the continue button was being held during the
+		/// previous Update. Used to prevent auto-continue at end of level,
+		/// since the player may be holdinging continue from jumping.
+		/// </summary>
         private bool wasContinuePressed;
-
-        // When the time remaining is less than the warning time, it blinks on the hud
-        private static readonly TimeSpan WarningTime = TimeSpan.FromSeconds(30);
 
         // We store our input states so that we only poll once per frame, 
         // then we use the same input state wherever needed
         private GamePadState gamePadState;
         private KeyboardState keyboardState;
 
-        // The number of levels in the Levels directory of our content. We assume that
-        // levels in our content are 0-based and that all numbers under this constant
-        // have a level file present. This allows us to not need to check for the file
-        // or handle exceptions, both of which can add unnecessary time to level loading.
+        /// <summary>
+        /// The number of levels in the Levels directory of our content. We
+		/// assume that levels in our content are 0-based and that all numbers
+		/// under this constant have a level file present. This allows us to
+		/// not need to check for the file or handle exceptions, both of which
+		/// can add unnecessary time to level loading.
+        /// </summary>
         private const int numberOfLevels = 3;
 
 		/// <summary>
@@ -64,6 +75,16 @@ namespace ThePrincessBard
         public ThePrincessBard()
         {
             graphics = new GraphicsDeviceManager(this);
+
+			try
+			{
+				xmlLevelReader = new XmlSerializer(typeof(LevelXmlIntermidiate));
+			}
+			catch (InvalidOperationException e)
+			{
+				Console.WriteLine(e.InnerException.Message);
+				Exit();
+			}
 			Content.RootDirectory = "Content";
         }
 
@@ -130,6 +151,9 @@ namespace ThePrincessBard
             base.Update(gameTime);
         }
 
+		/// <summary>
+		/// Parses player input from keyboard, mouse, and/or gamepad.
+		/// </summary>
         private void HandleInput()
         {
             // Get keyboard and/or gamepad input states.
@@ -172,6 +196,27 @@ namespace ThePrincessBard
 
             // Unloads the content for the current level before loading the next one.
 			if (level != null) { level.Dispose(); }
+
+			// XML level reading WIP
+			string xmlPath = string.Format("Content/Levels/{0}.xml", levelIndex);
+			using (Stream fileStream = new FileStream(xmlPath, FileMode.Open))
+			{
+				LevelXmlIntermidiate newLevel = (LevelXmlIntermidiate)(xmlLevelReader.Deserialize(fileStream));
+				fileStream.Close();
+			}
+
+			/* This is sample code that shows how to write an XML level file.
+			LevelXmlIntermidiate tempXmlLevel = new LevelXmlIntermidiate();
+			TileBlock tempXmlBlock = new TileBlock(1, 12, 3, 5, "dirt");
+			TileClump tempXmlClump = new TileClump("grass");
+			tempXmlClump.Add(0, 3);
+			tempXmlClump.Add(1, 6);
+			tempXmlLevel.Add(tempXmlBlock);
+			tempXmlLevel.Add(tempXmlClump);
+			TextWriter WriteFileStream = new StreamWriter(@"C:\Users\Julia\Documents\GitHub\GameJam1\ThePrincessBard\ThePrincessBardContent\Levels\TestTileGroup.xml");
+			xmlLevelReader.Serialize(WriteFileStream, tempXmlLevel);
+			WriteFileStream.Close();
+			*/
 
             // Load the level.
 			// TODO: This is where level files are found and loaded.

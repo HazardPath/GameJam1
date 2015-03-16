@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LevelXmlIntermidiate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TileBlocks>
+    <TileBlock>
+      <StartX>1</StartX>
+      <FinalX>12</FinalX>
+      <StartY>3</StartY>
+      <FinalY>5</FinalY>
+      <TileType>dirt</TileType>
+    </TileBlock>
+  </TileBlocks>
+  <TileClumps>
+    <TileClump>
+      <Coords>
+        <ArrayOfInt>
+          <int>0</int>
+          <int>3</int>
+        </ArrayOfInt>
+        <ArrayOfInt>
+          <int>1</int>
+          <int>6</int>
+        </ArrayOfInt>
+      </Coords>
+      <TileType>grass</TileType>
+    </TileClump>
+  </TileClumps>
+</LevelXmlIntermidiate>
