@@ -202,6 +202,7 @@ namespace ThePrincessBard
 			using (Stream fileStream = new FileStream(xmlPath, FileMode.Open))
 			{
 				LevelXmlIntermidiate newLevel = (LevelXmlIntermidiate)(xmlLevelReader.Deserialize(fileStream));
+				level = new Level(Services, newLevel, levelIndex);
 				fileStream.Close();
 			}
 
@@ -220,9 +221,9 @@ namespace ThePrincessBard
 
             // Load the level.
 			// TODO: This is where level files are found and loaded.
-            string levelPath = string.Format("Content/Levels/{0}.txt", levelIndex);
-			using (Stream fileStream = TitleContainer.OpenStream(levelPath))
-				level = new Level(Services, fileStream, levelIndex);
+            //string levelPath = string.Format("Content/Levels/{0}.txt", levelIndex);
+			//using (Stream fileStream = TitleContainer.OpenStream(levelPath))
+			//	level = new Level(Services, fileStream, levelIndex);
         }
 
 		/// <summary>
