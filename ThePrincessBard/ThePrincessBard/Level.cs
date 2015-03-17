@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 using ThePrincessBard.Actors;
+using ThePrincessBard.XML_Reading;
 
 namespace ThePrincessBard
 {
@@ -228,33 +229,31 @@ namespace ThePrincessBard
 			this.tiles = new Tile[xmlLevel.Width, xmlLevel.Height];
 
 			// Make all tiles into sky.
-			for (int tempX = 0; tempX < xmlLevel.Width; tempX++)
-			{
-				for (int tempY = 0; tempY < xmlLevel.Height; tempY++)
-				{
+			for (int tempX = 0; tempX < xmlLevel.Width; tempX++) {
+				for (int tempY = 0; tempY < xmlLevel.Height; tempY++) {
 					this.tiles[tempX, tempY] = new Tile(null, TileCollision.Passable);
 				}
 			}
 
 			// Overwrite them with tiles from the blocks.
-			foreach (TileBlock block in xmlLevel.TileBlocks)
-			{
-				for (int tempX = block.StartX; tempX <= block.FinalX; tempX++)
-				{
-					for (int tempY = block.StartY; tempY <= block.FinalY; tempY++)
-					{
-						this.tiles[tempX, tempY] = LookupTile(block.TileType);
+			foreach (TileBlock block in xmlLevel.TileBlocks) {
+				for (int tempX = block.StartX; tempX <= block.FinalX; tempX++) {
+					for (int tempY = block.StartY; tempY <= block.FinalY; tempY++) {
+						this.tiles[tempX, tempY] = LookupTile(block.TileType, tempX, tempY);
 					}
 				}
 			}
 
 			// Overwrite more with tiles from the clumps.
-			foreach (TileClump clump in xmlLevel.TileClumps)
-			{
-				foreach (List<int> coordPair in clump.Coords)
-				{
-					this.tiles[coordPair[0], coordPair[1]] = LookupTile(clump.TileType);
+			foreach (TileClump clump in xmlLevel.TileClumps) {
+				foreach (List<int> coordPair in clump.Coords) {
+					this.tiles[coordPair[0], coordPair[1]] = LookupTile(clump.TileType, coordPair[0], coordPair[1]);
 				}
+			}
+
+			// And finish off with the one-ofs.
+			foreach (SoloBlock solo in xmlLevel.SoloBlocks) {
+				this.tiles[solo.X, solo.Y] = LookupTile(solo.TileType, solo.X, solo.Y);
 			}
 		}
 
@@ -263,22 +262,99 @@ namespace ThePrincessBard
 		/// </summary>
 		/// <param name="name">the name of the tile to be identified</param>
 		/// <returns>a new Tile instance</returns>
-		private Tile LookupTile(string name)
+		private Tile LookupTile(string name, int x, int y)
 		{
-			/**/ if (name == "grass")
-			{
-				return LoadTile("grass/grass_mid_top", TileCollision.Impassable);
-			}
-			else if (name == "dirt")
-			{
-				return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable);
-			}
-			else if (name == "bricks")
-			{
-				return LoadTile("bricks/bricks", TileCollision.Impassable);
-			}
-			else
-			{
+			// TERRAIN
+			// GRASS
+			/**/ if (name == "grass" || name == "grassMT") {
+				return LoadTile("grass/grass_mid_top", TileCollision.Impassable); }
+			else if (name == "grassLS") {
+				return LoadTile("grass/grass_left_single", TileCollision.Impassable); }
+			else if (name == "grassLT") {
+				return LoadTile("grass/grass_left_top", TileCollision.Impassable); }
+			else if (name == "grassMS") {
+				return LoadTile("grass/grass_mid_single", TileCollision.Impassable); }
+			else if (name == "grassMT") {
+				return LoadTile("grass/grass_mid_top", TileCollision.Impassable); }
+			else if (name == "grassRS") {
+				return LoadTile("grass/grass_right_single", TileCollision.Impassable); }
+			else if (name == "grassRT") {
+				return LoadTile("grass/grass_right_top", TileCollision.Impassable); }
+			else if (name == "grassSS") {
+				return LoadTile("grass/grass_single_single", TileCollision.Impassable); }
+			else if (name == "grassST") {
+				return LoadTile("grass/grass_single_top", TileCollision.Impassable); }
+			else if (name == "grassHL") {
+				return LoadTile("grass/grass_slantToUpLeft", TileCollision.Impassable); }
+			else if (name == "grassHR") {
+				return LoadTile("grass/grass_slantToUpRight", TileCollision.Impassable); }
+			else if (name == "grassCL") {
+				return LoadTile("grass/grass_cornerUpRight", TileCollision.Impassable); }
+			else if (name == "grassCR") {
+				return LoadTile("grass/grass_cornerUpLeft", TileCollision.Impassable); }
+			else if (name == "grassSP") {
+				return LoadTile("grass/grass_special", TileCollision.Impassable); }
+			else if (name == "grassSPL") {
+				return LoadTile("grass/grass_special_left", TileCollision.Impassable); }
+			else if (name == "grassSPR") {
+				return LoadTile("grass/grass_special_right", TileCollision.Impassable); }
+			// DIRT
+			else if (name == "dirt") {
+				return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable); }
+			else if (name == "dirtLB") {
+				return LoadTile("dirt/dirt_left_bot", TileCollision.Impassable); }
+			else if (name == "dirtLM") {
+				return LoadTile("dirt/dirt_left_mid", TileCollision.Impassable); }
+			else if (name == "dirtLS") {
+				return LoadTile("dirt/dirt_left_single", TileCollision.Impassable); }
+			else if (name == "dirtLT") {
+				return LoadTile("dirt/dirt_left_top", TileCollision.Impassable); }
+			else if (name == "dirtMB") {
+				return LoadTile("dirt/dirt_mid_bot", TileCollision.Impassable); }
+			else if (name == "dirtMM") {
+				return LoadTile("dirt/dirt_mid_mid", TileCollision.Impassable); }
+			else if (name == "dirtMS") {
+				return LoadTile("dirt/dirt_mid_single", TileCollision.Impassable); }
+			else if (name == "dirtMT") {
+				return LoadTile("dirt/dirt_mid_top", TileCollision.Impassable); }
+			else if (name == "dirtRB") {
+				return LoadTile("dirt/dirt_right_bot", TileCollision.Impassable); }
+			else if (name == "dirtRM") {
+				return LoadTile("dirt/dirt_right_mid", TileCollision.Impassable); }
+			else if (name == "dirtRS") {
+				return LoadTile("dirt/dirt_right_single", TileCollision.Impassable); }
+			else if (name == "dirtRT") {
+				return LoadTile("dirt/dirt_right_top", TileCollision.Impassable); }
+			else if (name == "dirtSB") {
+				return LoadTile("dirt/dirt_single_bot", TileCollision.Impassable); }
+			else if (name == "dirtSM") {
+				return LoadTile("dirt/dirt_single_mid", TileCollision.Impassable); }
+			else if (name == "dirtSS") {
+				return LoadTile("dirt/dirt_single_single", TileCollision.Impassable); }
+			else if (name == "dirtST") {
+				return LoadTile("dirt/dirt_single_top", TileCollision.Impassable); }
+			// BRICKS
+			else if (name == "bricks") {
+				return LoadTile("bricks/bricks", TileCollision.Impassable); }
+			// ACTORS
+			else if (name == "kiwi") {
+				return LoadActor('k', x, y); }
+			else if (name == "ostrich") {
+				return LoadActor('o', x, y); }
+			else if (name == "rabbit") {
+				return LoadActor('r', x, y); }
+			else if (name == "mouse") {
+				return LoadActor('m', x, y); }
+			else if (name == "snake") {
+				return LoadActor('s', x, y); }
+			else if (name == "squirrel" || name == "squiwwel") {
+				return LoadActor('q', x, y); }
+			// START & EXIT
+			else if (name == "exit") {
+				return LoadExitTile(x, y); }
+			else if (name == "start") {
+				return LoadStartTile(x, y); }
+			else {
 				throw new NotSupportedException(String.Format("Unsupported tile type \"{0}\".", name));
 			}
 		}

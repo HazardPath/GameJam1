@@ -143,6 +143,7 @@
     <Compile Include="ThePrincessBard.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="XML Reading\LevelXmlIntermidiate.cs" />
+    <Compile Include="XML Reading\SoloBlock.cs" />
     <Compile Include="XML Reading\TileClump.cs" />
     <Compile Include="XML Reading\TileBlock.cs" />
   </ItemGroup>

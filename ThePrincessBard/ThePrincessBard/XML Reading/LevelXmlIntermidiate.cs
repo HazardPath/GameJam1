@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ThePrincessBard.XML_Reading;
 
 namespace ThePrincessBard
 {
@@ -26,6 +27,10 @@ namespace ThePrincessBard
 		/// List of clumps of tiles.
 		/// </summary>
 		private List<TileClump> tileClumps;
+		/// <summary>
+		/// List of one-of tiles.
+		/// </summary>
+		private List<SoloBlock> soloBlocks;
 
 		/// <summary>
 		/// The number of columns of tiles in the level.
@@ -59,6 +64,14 @@ namespace ThePrincessBard
 			get { return tileClumps; }
 			set { tileClumps = value; }
 		}
+		/// <summary>
+		/// The list of solo tiles in the level.
+		/// </summary>
+		public List<SoloBlock> SoloBlocks
+		{
+			get { return soloBlocks; }
+			set { soloBlocks = value; }
+		}
 
 		/// <summary>
 		/// Constructs a new LevelXmlIntermidiate, with no data.
@@ -67,6 +80,24 @@ namespace ThePrincessBard
 		{
 			tileBlocks = new List<TileBlock>();
 			tileClumps = new List<TileClump>();
+			soloBlocks = new List<SoloBlock>();
+
+			width = -1;
+			height = -1;
+		}
+
+		/// <summary>
+		/// Constructs a new LevelXmlIntermidiate with the given width and
+		/// height.
+		/// </summary>
+		public LevelXmlIntermidiate(int width, int height)
+		{
+			tileBlocks = new List<TileBlock>();
+			tileClumps = new List<TileClump>();
+			soloBlocks = new List<SoloBlock>();
+
+			this.width = width;
+			this.height = height;
 		}
 
 		/// <summary>

@@ -39,7 +39,7 @@ namespace ThePrincessBard.Actors
         {
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit"), 0.1f, true, 32);
-            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit_hop_full"), 0.1f, true, 32);
+            runAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit_walk_full"), 0.15f, true, 32);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit_jump"), 0.1f, false, 32);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Graphics/rabbit/rabbit"), 0.1f, false, 32);
 

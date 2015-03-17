@@ -34,6 +34,7 @@ namespace ThePrincessBard
 
 		/// <summary>
 		/// The left edge of the TileGroup.
+		/// Lower number.
 		/// </summary>
 		public int StartX
 		{
@@ -42,6 +43,7 @@ namespace ThePrincessBard
 		}
 		/// <summary>
 		/// The right edge of the TileGroup.
+		/// Higher number.
 		/// </summary>
 		public int FinalX
 		{
@@ -49,7 +51,8 @@ namespace ThePrincessBard
 			set { finalX = value; }
 		}
 		/// <summary>
-		/// The bottom edge of the TileGroup.
+		/// The top edge of the TileGroup.
+		/// Lower number.
 		/// </summary>
 		public int StartY
 		{
@@ -57,7 +60,8 @@ namespace ThePrincessBard
 			set { startY = value; }
 		}
 		/// <summary>
-		/// The top edge of the TileGroup.
+		/// The bottom edge of the TileGroup.
+		/// Higher number.
 		/// </summary>
 		public int FinalY
 		{
@@ -91,8 +95,8 @@ namespace ThePrincessBard
 		/// </summary>
 		/// <param name="StartX">left edge</param>
 		/// <param name="FinalX">right edge</param>
-		/// <param name="StartY">bottom edge</param>
-		/// <param name="FinalY">top edge</param>
+		/// <param name="StartY">top edge</param>
+		/// <param name="FinalY">bottom edge</param>
 		/// <param name="TileType">type of tiles (like grass, dirt, etc.)</param>
 		public TileBlock(int StartX, int FinalX, int StartY, int FinalY, string TileType)
 		{
